@@ -1,0 +1,56 @@
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { Menu } from 'lucide-react';
+import Sidebar from './components/Sidebar';
+import SchoolDashboard from './pages/SchoolDashboard';
+import SchoolTailwind from './pages/SchoolTailwind';
+import StudentDashboard from './pages/StudentDashboard';
+import Courses from './pages/Courses';
+import CourseDetail from './pages/CourseDetail';
+import CourseViewer from './pages/CourseViewer';
+import Challenges from './pages/Challenges';
+import ChallengeDetails from './pages/ChallengeDetails';
+import MainChallengeDetails from './pages/MainChallengeDetails';
+
+const App: React.FC = () => {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  return (
+    <Router>
+      <div className="app-layout">
+        {/* Menu Button */}
+        <button
+          onClick={() => setSidebarOpen(true)}
+          className="lg:hidden fixed top-4 left-4 z-30 p-3 bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-700 transition-colors"
+        >
+          <Menu size={20} />
+        </button>
+
+        {/* Sidebar */}
+        <Sidebar isOpen={sidebarOpen} setIsOpen={setSidebarOpen} />
+        
+        {/* Main Content */}
+        <main className="main-content lg:ml-64 transition-all duration-300">
+          <Routes>
+            <Route path="/" element={<Navigate to="/school" replace />} />
+            <Route path="/school" element={<SchoolDashboard />} />
+            <Route path="/student" element={<StudentDashboard />} />
+            <Route path="/courses" element={<Courses />} />
+            <Route path="/courses/:id" element={<CourseDetail />} />
+            <Route path="/course-viewer/:id" element={<CourseViewer />} />
+            <Route path="/challenges" element={<Challenges />} />
+            {/* School view - simplified challenge overview for schools */}
+            <Route path="/school/challenges/:id" element={<ChallengeDetails />} />
+            {/* Main detailed view - comprehensive challenge details for students/participants */}
+            <Route path="/challenges/:id" element={<MainChallengeDetails />} />
+            {/* Legacy route - redirect to main detailed view */}
+            <Route path="/challenge-details" element={<Navigate to="/challenges/innovation-championship-2025" replace />} />
+            <Route path="/profile" element={<SchoolDashboard />} />
+          </Routes>
+        </main>
+      </div>
+    </Router>
+  );
+};
+
+export default App;
