@@ -278,13 +278,13 @@ const Courses: React.FC = () => {
                 </div>
 
                 {/* Rating */}
-                <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-lg flex items-center gap-1">
+                {/* <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-lg flex items-center gap-1">
                   <Star size={14} className="text-amber-500 fill-amber-500" />
                   <span className="text-xs font-bold text-gray-800">{course.rating}</span>
-                </div>
+                </div> */}
 
                 {/* Host/Instructor Overlay - Bottom Left */}
-                <div className="absolute bottom-3 left-3 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-xl border border-white/20">
+                {/* <div className="absolute bottom-3 left-3 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-xl border border-white/20">
                   <div className="flex items-center gap-2">
                     <div className="w-6 h-6 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center">
                       <span className="text-white text-xs font-bold">
@@ -293,17 +293,17 @@ const Courses: React.FC = () => {
                     </div>
                     <span className="text-white text-xs font-bold">{course.instructor}</span>
                   </div>
-                </div>
+                </div> */}
 
                 {/* Validity Overlay - Bottom Right */}
-                <div className="absolute bottom-3 right-3 bg-green-600/80 backdrop-blur-md px-3 py-1.5 rounded-xl border border-white/20">
+                {/* <div className="absolute bottom-3 right-3 bg-green-600/80 backdrop-blur-md px-3 py-1.5 rounded-xl border border-white/20">
                   <div className="flex items-center gap-1.5">
                     <Clock size={12} className="text-white" />
                     <span className="text-white text-xs font-bold">
                       Validity: 6 months
                     </span>
                   </div>
-                </div>
+                </div> */}
               </div>{/* Course Content */}
               <div className="p-6">
                 {/* Course Title - Fixed 2-line height */}
@@ -311,7 +311,12 @@ const Courses: React.FC = () => {
                   <h3 className="text-xl font-black text-gray-900 leading-tight tracking-tight line-clamp-2">
                     {course.title}
                   </h3>
-                </div>                
+                  <div className="flex items-center gap-2">
+                  <span className="font-bold text-purple-700">by {course.instructor}</span>
+                  </div>
+                  
+                </div>    
+                            
                 {/* Course Description - Fixed height */}
                 <div className="h-16 mb-4">
                   <p className="text-sm text-gray-600 leading-relaxed line-clamp-3">
@@ -321,18 +326,14 @@ const Courses: React.FC = () => {
 
                 {/* Course Info Grid */}
                 <div className="grid grid-cols-2 gap-3 mb-4 text-xs">
+                  <span className="bg-white-100 text-green-800 px-2 py-1 rounded-full text-xs font-black">
+                    ⭐ 4.6
+                  </span>
                   <div className="flex items-center gap-1.5 text-gray-600">
-                    <Clock size={14} className="text-blue-500" />
-                    <span className="font-semibold">{course.duration}</span>
+                  <Users size={14} className="text-green-500" />
+                  <span className="font-semibold">{course.grade}</span>
                   </div>
-                  <div className="flex items-center gap-1.5 text-gray-600">
-                    <Award size={14} className="text-purple-500" />
-                    <span className="font-semibold">{course.level}</span>
-                  </div>
-                  <div className="flex items-center gap-1.5 text-gray-600 col-span-2">
-                    <Users size={14} className="text-green-500" />
-                    <span className="font-semibold">{course.grade}</span>
-                  </div>
+                  
                 </div>
 
                 {/* Pricing */}
@@ -343,21 +344,16 @@ const Courses: React.FC = () => {
                   <span className="text-lg font-bold text-gray-400 line-through">
                     ₹{course.originalPrice.toLocaleString()}
                   </span>
-                  <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-black">
+                  {/* <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-black">
                     {Math.round((1 - course.discountedPrice / course.originalPrice) * 100)}% OFF
-                  </span>
+                  </span> */}
+                  
+                  
                 </div>                {/* Action Buttons */}
                 <div className="flex gap-3">
                   <button className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-4 rounded-xl font-black text-sm hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-2">
                     <ShoppingCart size={16} />
                     Buy Now
-                  </button>
-                  <button 
-                    onClick={() => navigate(`/courses/${course.id}`)}
-                    className="px-4 py-3 border-2 border-gray-300 text-gray-700 rounded-xl font-bold text-sm hover:bg-gray-50 hover:border-gray-400 transition-all duration-300 flex items-center justify-center gap-2"
-                  >
-                    <Eye size={16} />
-                    View Details
                   </button>
                 </div>
               </div>

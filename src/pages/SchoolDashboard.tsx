@@ -9,9 +9,9 @@ const SchoolDashboard: React.FC = () => {
   
   // Mock booked dates (some consecutive pairs to show as unavailable)
   const bookedDates = [
-    [10, 11], // October 10-11
+    [11, 12], // October 10-11
     [15, 16], // October 15-16
-    [22, 23], // October 22-23
+    [23, 24], // October 22-23
   ];
 
   // Calendar constants

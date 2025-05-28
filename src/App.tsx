@@ -3,15 +3,15 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { Menu } from 'lucide-react';
 import Sidebar from './components/Sidebar';
 import SchoolDashboard from './pages/SchoolDashboard';
-import SchoolTailwind from './pages/SchoolTailwind';
+// import SchoolTailwind from './pages/SchoolTailwind';
 import StudentDashboard from './pages/StudentDashboard';
 import ProfessionalDashboard from './pages/ProfessionalDashboard';
 import Courses from './pages/Courses';
 import CourseDetail from './pages/CourseDetail';
 import CourseViewer from './pages/CourseViewer';
 import Challenges from './pages/Challenges';
-import ChallengeDetails from './pages/ChallengeDetails';
-import MainChallengeDetails from './pages/MainChallengeDetails';
+import ChallengeDetails from './pages/ChallengeDetailsSchool';
+import ChallengeDetailsNew from './pages/ChallengeDetailsNew';
 import StudentProfilePage from './pages/profiles/StudentProfilePage';
 import SchoolProfilePage from './pages/profiles/SchoolProfilePage';
 import ProfessionalProfilePage from './pages/profiles/ProfessionalProfilePage';
@@ -47,7 +47,7 @@ const App: React.FC = () => {
             {/* School view - simplified challenge overview for schools */}
             <Route path="/school/challenges/:id" element={<ChallengeDetails />} />
             {/* Main detailed view - comprehensive challenge details for students/participants */}
-            <Route path="/challenges/:id" element={<MainChallengeDetails />} />
+            <Route path="/challenges/:id" element={<ChallengeDetailsNew />} />
             {/* Legacy route - redirect to main detailed view */}
             <Route path="/challenge-details" element={<Navigate to="/challenges/innovation-championship-2025" replace />} />
             {/* Profile Routes */}

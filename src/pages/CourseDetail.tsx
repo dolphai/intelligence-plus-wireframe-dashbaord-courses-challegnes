@@ -390,15 +390,17 @@ const CourseDetail: React.FC = () => {
                   </p>
                   
                   <div className="flex items-center space-x-6 text-sm text-gray-600">
-                    <span className="font-medium">By {courseData.instructor}</span>
+                    <div className="flex items-center gap-2">
+                  <span className="font-bold text-purple-700">by {courseData.instructor}</span>
+                  </div>
                     <div className="flex items-center">
                       <Star className="w-4 h-4 text-yellow-400 mr-1 fill-current" />
                       <span className="font-medium">{courseData.rating}</span>
                     </div>
-                    <div className="flex items-center">
+                    {/* <div className="flex items-center">
                       <Clock className="w-4 h-4 mr-1 text-blue-600" />
                       <span className="font-medium">{courseData.duration}</span>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
                 
@@ -435,9 +437,9 @@ const CourseDetail: React.FC = () => {
                     >
                       🎓 Enroll Now - $299
                     </button>
-                    <button className="px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-xl font-bold text-sm hover:bg-gray-50 hover:border-gray-400 transition-all duration-300">
+                    {/* <button className="px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-xl font-bold text-sm hover:bg-gray-50 hover:border-gray-400 transition-all duration-300">
                       👀 Preview
-                    </button>
+                    </button> */}
                   </>
                 ) : (
                   <>
@@ -470,18 +472,7 @@ const CourseDetail: React.FC = () => {
                 {renderContentViewer()}
               </div>            )}
 
-            {/* Innovation Challenge */}
-            <div className="bg-gradient-to-r from-purple-600 to-purple-700 rounded-lg p-6 text-white">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h3 className="text-xl font-semibold mb-2">Take up the Innovation Challenge</h3>
-                  {isEnrolled && <p className="text-purple-100">Continue your learning journey</p>}
-                </div>
-                <Button variant="secondary" size="sm">
-                  {isEnrolled ? "Continue" : "Get Started"}
-                </Button>
-              </div>
-            </div>
+           
 
             {/* Progress Section */}
             {isEnrolled && (
@@ -609,125 +600,87 @@ const CourseDetail: React.FC = () => {
           <div className="space-y-6">            {/* Associated Challenge */}
             <Card className="bg-white shadow-lg border-2">
               <CardHeader className="pb-4">
-                <CardTitle className="text-xl font-black bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                  🏆 Associated Challenge
-                </CardTitle>
-                <p className="text-gray-600 text-sm font-medium">Test your skills and compete</p>
+              <CardTitle className="text-xl font-black bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                🏆 Associated Challenge
+              </CardTitle>
+              <p className="text-gray-600 text-sm font-medium">Test your skills and compete</p>
               </CardHeader>
               <CardContent>
-                {/* Single Challenge Card */}
-                <div className="bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer transform hover:-translate-y-1 border border-gray-100 overflow-hidden">                  {/* Challenge Thumbnail */}
-                  <div className="w-full h-22 bg-gradient-to-br from-blue-500 to-purple-600 relative overflow-hidden">
-                    <img 
-                      src="/images/challenges/innoventure_challenge.png"
-                      alt="Innovation Championship 2025"
-                      className="w-full h-full object-cover"
-                      onError={(e) => {
-                        e.currentTarget.style.display = 'none';
-                      }}
-                    />
-                    {/* Fallback gradient background */}
-                    {/* <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white text-2xl font-bold">
-                      IC
-                    </div> */}
-                    
-                    {/* Registration Status Badge */}
-                    <div className="absolute top-4 right-4">
-                      <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-green-100 text-green-800 border border-green-200">
-                        Open
-                      </span>
-                    </div>
-                  </div>
+              {/* Single Challenge Card */}
+              <div className="bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer transform hover:-translate-y-1 border border-gray-100 overflow-hidden">
+                {/* Challenge Thumbnail */}
+                <div className="w-full h-30 bg-gradient-to-br from-blue-500 to-purple-600 relative overflow-hidden">
+                <img 
+                  src="/images/challenges/innoventure_challenge.png"
+                  alt="Innovation Championship 2025"
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                  e.currentTarget.style.display = 'none';
+                  }}
+                />
+                
+                {/* Registration Status Badge */}
+                <div className="absolute top-2 right-2">
+                  <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-bold bg-green-100 text-green-800 border border-green-200">
+                  Open
+                  </span>
+                </div>
+                </div>
 
-                  {/* Card Content */}
-                  <div className="p-6">
-                    {/* Challenge Title - Fixed height with line clamp */}
-                    <div className="h-12 mb-3">
+                {/* Card Content */}
+                <div className="p-4">
+                {/* Challenge Title */}
+                 <div className="h-12 mb-3">
                       <h3 className="text-lg font-black text-gray-800 tracking-tight leading-tight line-clamp-2">
                         Innovation Championship 2025
                       </h3>
-                    </div>
-                    
-                    {/* Challenge Description - Fixed height with line clamp */}
-                    <div className="h-16 mb-4">
-                      <p className="text-sm text-gray-600 leading-relaxed line-clamp-3">
-                        A comprehensive challenge focusing on innovative problem-solving and creative thinking. Students will work in teams to develop solutions for real-world problems.
-                      </p>
-                    </div>
-
-                    {/* Challenge Stats */}
-                    <div className="grid grid-cols-2 gap-x-4 gap-y-2 mb-6">
-                      <div className="flex items-center gap-2 text-sm text-gray-600">
-                        <Calendar size={16} className="text-blue-500" />
-                        <span className="font-medium">Starts: Oct 15, 2024</span>
-                      </div>
-                      <div className="flex items-center gap-2 text-sm text-gray-600">
-                        <Clock size={16} className="text-red-500" />
-                        <span className="font-medium">Deadline: Nov 30, 2024</span>
-                      </div>
-                      <div className="flex items-center gap-2 text-sm text-gray-600">
-                        <Calendar size={16} className="text-blue-500" />
-                        <span className="font-medium">Starts: Oct 30, 2024</span>
-                      </div>
-                      <div className="flex items-center gap-2 text-sm text-gray-600">
-                        <svg width={16} height={16} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-purple-500">
-                          <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
-                        <span className="font-medium">Grades 8-12</span>
+                      <div className="flex items-center gap-2">
+                        <span className="font-bold text-purple-700">by Smith Eve</span>
                       </div>
                     </div>
-
-                    {/* Challenge Actions */}
-                    <div className="flex gap-2">
-                      <button className="flex-1 py-2 px-4 rounded-lg text-sm font-bold transition-all duration-200 bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700">
-                        Register
-                      </button>
-                      <button className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors duration-200">
-                        Details
-                      </button>
-                    </div>
-                  </div>
+                
+                {/* Challenge Description */}
+                <div className="mb-3">
+                  <p className="text-sm text-gray-600 leading-relaxed line-clamp-2">
+                  A comprehensive challenge focusing on innovative problem-solving and creative thinking.
+                  </p>
                 </div>
+
+                {/* Challenge Stats */}
+                <div className="flex items-center gap-2 text-sm text-gray-600">
+                  <Clock size={14} className="text-red-500" />
+                  <span className="font-medium">Deadline: Nov 30, 2024</span>
+                </div>
+                </div>
+              </div>
               </CardContent>
-            </Card>            {/* Partners */}
+            </Card>
+            {/* Partners */}
             <Card className="bg-white shadow-lg border-2">
               <CardHeader className="pb-4">
-                <CardTitle className="text-xl font-black bg-gradient-to-r from-indigo-600 to-cyan-600 bg-clip-text text-transparent">
-                  🤝 Our Partners
-                </CardTitle>
-                <p className="text-gray-600 text-sm font-medium">Trusted by leading institutions</p>
+              <CardTitle className="text-xl font-black bg-gradient-to-r from-indigo-600 to-cyan-600 bg-clip-text text-transparent">
+                🤝 Our Partners
+              </CardTitle>
+              <p className="text-gray-600 text-sm font-medium">Trusted by leading institutions</p>
               </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-1 gap-4">
-                  {partners.map((partner, index) => (
-                    <div key={index} className="flex items-center gap-4 p-4 bg-gradient-to-r from-gray-50 to-blue-50 rounded-xl hover:from-gray-100 hover:to-blue-100 transition-all duration-300 border border-gray-200 hover:border-blue-300">
-                      <div className="w-16 h-16 flex items-center justify-center bg-white rounded-xl shadow-md p-2 flex-shrink-0">
-                        <img
-                          src={partner.logo}
-                          alt={partner.name}
-                          className="max-w-full max-h-full object-contain"
-                          onError={(e) => {
-                            e.currentTarget.style.display = 'none';
-                            const fallback = e.currentTarget.nextElementSibling as HTMLElement;
-                            if (fallback) fallback.style.display = 'flex';
-                          }}
-                        />
-                        <div 
-                          className="hidden w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg items-center justify-center"
-                          style={{ display: 'none' }}
-                        >
-                          <span className="text-white text-xs font-black">
-                            {partner.name.split(' ').map(word => word[0]).join('')}
-                          </span>
-                        </div>
-                      </div>
-                      <div className="flex-1">
-                        <h4 className="text-lg font-bold text-gray-800">{partner.name}</h4>
-                        <p className="text-sm text-gray-600 font-medium">Educational Partner</p>
-                      </div>
-                    </div>
-                  ))}
+                <CardContent>
+                <div className="space-y-4">
+                {partners.map((partner, index) => (
+                <div
+                  key={index}
+                  className="bg-gray-30 rounded-lg hover:bg-gray-100 transition-colors p-3"
+                >
+                  <h4 className="font-medium text-gray-900 mb-3">{partner.name}</h4>
+                  <div className="w-full aspect-video bg-gray-200 rounded-lg overflow-hidden">
+                  <img
+                  src={partner.logo || "/placeholder.svg"}
+                  alt={partner.name}
+                  className="w-full h-full object-contain"
+                  />
+                  </div>
                 </div>
+                ))}
+              </div>
               </CardContent>
             </Card>
           </div>

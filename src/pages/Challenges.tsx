@@ -14,6 +14,7 @@ const Challenges: React.FC = () => {
       name: 'Innovation Championship 2025',
       description: 'A comprehensive challenge focusing on innovative problem-solving and creative thinking. Students will work in teams to develop solutions for real-world problems.',
       deadline: '2025-07-15',
+      instructor: 'Dr. Jane Smith',
       startDate: '2025-06-01',
       endDate: '2025-06-15',
       registrationStatus: 'open',
@@ -27,6 +28,7 @@ const Challenges: React.FC = () => {
       name: 'Math Olympiad Spring Competition',
       description: 'Test your mathematical skills in this challenging competition covering algebra, geometry, and calculus with expert problem sets.',
       deadline: '2025-06-20',
+      instructor: 'Dr. Jane Smith',
       startDate: '2025-06-15',
       endDate: '2025-06-15',
       registrationStatus: 'registered',
@@ -37,9 +39,10 @@ const Challenges: React.FC = () => {
     },
     {
       _id: '3',
-      name: 'Coding Challenge Pro Developer Contest',
+      name: 'Coding Challenge Pro Developer ',
       description: 'Programming competition featuring algorithms, data structures, and software development challenges for aspiring developers.',
       deadline: '2025-08-10',
+      instructor: 'Dr. Jane Smith',
       startDate: '2025-07-20',
       endDate: '2025-08-10',
       registrationStatus: 'open',
@@ -53,6 +56,7 @@ const Challenges: React.FC = () => {
       name: 'Science Fair Regional Championships',
       description: 'Present your scientific research and innovations in this regional science fair competition with expert judging panel.',
       deadline: '2025-05-30',
+      instructor: 'Dr. Jane Smith',
       startDate: '2025-05-25',
       endDate: '2025-06-15',
       registrationStatus: 'expired',
@@ -65,6 +69,7 @@ const Challenges: React.FC = () => {
       _id: '5',
       name: 'Creative Writing Competition',
       description: 'Express your creativity through compelling stories, poems, and essays in this literary challenge.',
+      instructor: 'Dr. Jane Smith',
       deadline: '2025-06-30',
       startDate: '2025-06-10',
       endDate: '2025-06-15',
@@ -78,6 +83,7 @@ const Challenges: React.FC = () => {
       _id: '6',
       name: 'Elementary Art Showcase',
       description: 'Young artists showcase their creativity in this fun and engaging art competition designed for elementary students.',
+      instructor: 'Dr. Jane Smith',
       deadline: '2025-07-05',
       startDate: '2025-06-20',
       endDate: '2025-07-05',
@@ -212,6 +218,9 @@ const Challenges: React.FC = () => {
                   <h3 className="text-lg font-black text-gray-800 tracking-tight leading-tight line-clamp-2">
                     {challenge.name}
                   </h3>
+                  <div className="flex items-center gap-2">
+                  <span className="font-bold text-purple-700">by {challenge.instructor}</span>
+                  </div>
                 </div>
                 
                 {/* Challenge Description - Fixed height with line clamp */}
@@ -222,16 +231,8 @@ const Challenges: React.FC = () => {
                 </div>                {/* Challenge Stats */}
                 <div className="grid grid-cols-2 gap-x-4 gap-y-2 mb-6">
                   <div className="flex items-center gap-2 text-sm text-gray-600">
-                    <Calendar size={16} className="text-blue-500" />
-                    <span className="font-medium">Starts: {new Date(challenge.startDate).toLocaleDateString()}</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm text-gray-600">
                     <Clock size={16} className="text-red-500" />
                     <span className="font-medium">Deadline: {new Date(challenge.deadline).toLocaleDateString()}</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm text-gray-600">
-                    <Calendar size={16} className="text-blue-500" />
-                    <span className="font-medium">Ends: {new Date(challenge.endDate).toLocaleDateString()}</span>
                   </div>
                   <div className="flex items-center gap-2 text-sm text-gray-600">
                     <svg width={16} height={16} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-purple-500">
@@ -257,9 +258,7 @@ const Challenges: React.FC = () => {
                   >
                     {getRegistrationButtonText(challenge.registrationStatus)}
                   </button>
-                  <button className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors duration-200">
-                    Details
-                  </button>
+                  
                 </div>
               </div>
             </div>
