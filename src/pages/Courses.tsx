@@ -167,12 +167,13 @@ const Courses: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="p-6">
+      <div className="p-4">
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-5xl font-black bg-gradient-to-r from-slate-900 via-purple-900 to-indigo-900 bg-clip-text text-transparent mb-3 tracking-tight">
+        <div className="mb-6">
+          <h1 className="text-4xl font-black bg-gradient-to-r from-slate-900 via-purple-900 to-indigo-900 bg-clip-text text-transparent mb-1 tracking-tight antialiased leading-normal">
             Courses
           </h1>
+
           <p className="text-xl font-medium text-slate-600 tracking-wide">
             Discover and enroll in comprehensive courses to enhance your skills
           </p>
@@ -325,19 +326,25 @@ const Courses: React.FC = () => {
                 </div>
 
                 {/* Course Info Grid */}
-                <div className="grid grid-cols-2 gap-3 mb-4 text-xs">
-                  <span className="bg-white-100 text-green-800 px-2 py-1 rounded-full text-xs font-black">
-                    ⭐ 4.6
-                  </span>
+                <div className="grid grid-cols-2 gap-3 mb-4 text-s">
+                  
                   <div className="flex items-center gap-1.5 text-gray-600">
                   <Users size={14} className="text-green-500" />
                   <span className="font-semibold">{course.grade}</span>
                   </div>
+                    <div className="flex items-center gap-1.5 text-gray-600 justify-end">
+                    <Star size={14} className="text-amber-500 fill-amber-500" />
+                    <span className="font-bold text-gray-800">{course.rating}</span>
+                    </div>
                   
                 </div>
 
                 {/* Pricing */}
-                <div className="flex items-center gap-3 mb-6">
+                <div className="flex items-center gap-3 mb-3">
+                  <button className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-4 rounded-xl font-black text-sm hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-2">
+                    <ShoppingCart size={16} />
+                    Enrol
+                  </button>
                   <span className="text-2xl font-black text-green-600">
                     ₹{course.discountedPrice.toLocaleString()}
                   </span>
@@ -348,14 +355,8 @@ const Courses: React.FC = () => {
                     {Math.round((1 - course.discountedPrice / course.originalPrice) * 100)}% OFF
                   </span> */}
                   
-                  
-                </div>                {/* Action Buttons */}
-                <div className="flex gap-3">
-                  <button className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-4 rounded-xl font-black text-sm hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-2">
-                    <ShoppingCart size={16} />
-                    Buy Now
-                  </button>
-                </div>
+                </div>               
+                
               </div>
             </div>
           ))}

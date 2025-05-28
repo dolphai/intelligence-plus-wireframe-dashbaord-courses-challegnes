@@ -5,6 +5,7 @@ import {
   Play,
   Lock,
   CheckCircle,
+  Target,
   Clock,
   Users,
   Award,
@@ -43,10 +44,21 @@ interface Section {
   isOpen: boolean;
 }
 
+interface FAQ {
+  id: number
+  question: string
+  answer: string
+  isOpen: boolean
+  category: "general" | "technical" | "registration"
+}
+
+
 const CourseDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [isEnrolled, setIsEnrolled] = useState(false);
   const [progress, setProgress] = useState(25);
+  const [activeTab, setActiveTab] = useState<"overview" | "rounds" | "faqs">("overview")
+  
   const [selectedContent, setSelectedContent] = useState<{ type: ContentType; title: string } | null>(null);
   const [sections, setSections] = useState<Section[]>([
     {
@@ -167,6 +179,7 @@ const CourseDetail: React.FC = () => {
     description:
       "Are you ready to unlock the power of physics and build a solid foundation in mathematical thinking using a comprehensive approach? Whether you're a student seeking to enhance your skills or someone looking to refresh your skills.",
     instructor: "Dr. Neil Science",
+    longDescription: "This course offers a deep dive into the fundamental concepts of physics, with a focus on real-world applications and problem-solving techniques. Through engaging lectures, interactive simulations, and hands-on experiments, students will develop a thorough understanding of key principles and their relevance in everyday life.This course is designed for beginners, providing a step-by-step introduction to physics concepts such as motion, forces, energy, and waves. Students will learn how to apply mathematical reasoning to solve complex problems and gain a solid foundation for further studies in physics or related fields.",
     rating: 4.8,
     students: 1234,
     duration: "8 weeks",
@@ -177,7 +190,49 @@ const CourseDetail: React.FC = () => {
     { name: "IIT Hyderabad", logo: "/images/partners/iit.png" },
     { name: "Education World", logo: "/images/partners/education_world.png" },
   ];
-
+    const [faqs, setFaqs] = useState<FAQ[]>([
+      {
+        id: 1,
+        question: "Who can participate in InnoVenture 2025?",
+        answer:
+          "Students from grades 1st to 9th studying in any recognized school in India can participate. The challenge is designed with age-appropriate problem statements for each grade level.",
+        category: "general",
+        isOpen: false,
+      },
+      {
+        id: 2,
+        question: "What is the registration process and deadline?",
+        answer:
+          "Registration is done through schools only. Schools must register their students on the official Innoventure platform. Individual registrations are not accepted. Registration deadline is mid-September 2025.",
+        category: "registration",
+        isOpen: false,
+      },
+      {
+        id: 3,
+        question: "Is there any participation fee?",
+        answer:
+          "The challenge is completely FREE for all participants. There are no hidden charges or registration fees. This is part of our commitment to making innovation accessible to all students.",
+        category: "registration",
+        isOpen: false,
+      },
+      {
+        id: 4,
+        question: "What technical setup do I need?",
+        answer:
+          "You need a stable internet connection (minimum 2 Mbps), a device with web-camera (laptop/smartphone), and a quiet environment. We recommend testing your setup using our practice portal before the actual challenge.",
+        category: "technical",
+        isOpen: false,
+      },
+      {
+        id: 5,
+        question: "How are the challenges evaluated?",
+        answer:
+          "Evaluation is based on innovation quotient, creativity, problem-solving approach, feasibility of solutions, and presentation skills. Each round has specific evaluation criteria appropriate to the grade level.",
+        category: "general",
+        isOpen: false,
+      },
+    ])
+  
   const toggleSection = (sectionId: number) => {
     setSections(
       sections.map((section) => (section.id === sectionId ? { ...section, isOpen: !section.isOpen } : section)),
@@ -349,86 +404,137 @@ const CourseDetail: React.FC = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main Content */}
-          <div className="lg:col-span-2 space-y-6">            {/* Course Header */}
-            <div className="bg-white rounded-lg p-6 shadow-sm">              <div className="flex flex-wrap gap-3 mb-6">
-                {courseData.tags.map((tag, index) => {
-                  if (tag === "Best Seller") {
-                    return (
-                      <span key={index} className="px-4 py-2 bg-gradient-to-r from-amber-500 to-orange-500 text-white text-sm font-black rounded-xl shadow-lg">
-                        ⭐ {tag}
-                      </span>
-                    );
-                  } else if (tag === "Most Popular") {
-                    return (
-                      <span key={index} className="px-4 py-2 bg-gradient-to-r from-pink-500 to-rose-500 text-white text-sm font-black rounded-xl shadow-lg">
-                        🔥 {tag}
-                      </span>
-                    );
-                  } else if (tag === "Beginner") {
-                    return (
-                      <span key={index} className="px-4 py-2 bg-gradient-to-r from-green-500 to-emerald-500 text-white text-sm font-black rounded-xl shadow-lg">
-                        🌱 {tag}
-                      </span>
-                    );
-                  } else {
-                    return (
-                      <span key={index} className="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white text-sm font-black rounded-xl shadow-lg">
-                        {tag}
-                      </span>
-                    );
-                  }
-                })}
+            <div className="lg:col-span-2 space-y-6">
+            {/* Course Header */}
+            <div className="bg-white rounded-lg p-6 shadow-sm relative">
+              {/* Share Button */}
+              <button 
+              onClick={() => {
+                if (navigator.share) {
+                navigator.share({
+                  title: courseData.title,
+                  text: courseData.description,
+                  url: window.location.href,
+                });
+                } else {
+                navigator.clipboard.writeText(window.location.href);
+                alert('Link copied to clipboard!');
+                }
+              }}
+              className="absolute top-4 right-4 p-2 bg-gray-100 hover:bg-blue-100 rounded-full transition-colors duration-200 group"
+              title="Share course"
+              >
+              <svg 
+                className="w-5 h-5 text-gray-600 group-hover:text-blue-600 transition-colors" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z" />
+              </svg>
+              </button>
+
+              <div className="flex flex-wrap gap-3 mb-6">
+              {courseData.tags.map((tag, index) => {
+                if (tag === "Best Seller") {
+                return (
+                  <span key={index} className="px-4 py-2 bg-gradient-to-r from-amber-500 to-orange-500 text-white text-sm font-black rounded-xl shadow-lg">
+                  ⭐ {tag}
+                  </span>
+                );
+                } else if (tag === "Most Popular") {
+                return (
+                  <span key={index} className="px-4 py-2 bg-gradient-to-r from-pink-500 to-rose-500 text-white text-sm font-black rounded-xl shadow-lg">
+                  🔥 {tag}
+                  </span>
+                );
+                } else if (tag === "Beginner") {
+                return (
+                  <span key={index} className="px-4 py-2 bg-gradient-to-r from-green-500 to-emerald-500 text-white text-sm font-black rounded-xl shadow-lg">
+                  🌱 {tag}
+                  </span>
+                );
+                } else {
+                return (
+                  <span key={index} className="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white text-sm font-black rounded-xl shadow-lg">
+                  {tag}
+                  </span>
+                );
+                }
+              })}
               </div>
 
               <h1 className="text-3xl font-black text-gray-900 mb-4 tracking-tight">{courseData.title}</h1>
               
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
-                {/* Left side - Description */}
-                <div className="lg:col-span-2">                  <p className="text-gray-600 mb-4 leading-relaxed">
-                    Are you ready to unlock the power of physics and build a solid foundation in mathematical thinking? 
-                    Whether you're a student seeking to enhance your skills or someone looking to refresh your knowledge.
-                  </p>
-                  
-                  <div className="flex items-center space-x-6 text-sm text-gray-600">
-                    <div className="flex items-center gap-2">
+              {/* Left side - Description */}
+              <div className="lg:col-span-2">
+                <p className="text-gray-600 mb-4 leading-relaxed">
+                Are you ready to unlock the power of physics and build a solid foundation in mathematical thinking? 
+                Whether you're a student seeking to enhance your skills or someone looking to refresh your knowledge.
+                </p>
+                
+                <div className="flex items-center space-x-6 text-sm text-gray-600">
+                <div className="flex items-center gap-2">
                   <span className="font-bold text-purple-700">by {courseData.instructor}</span>
-                  </div>
-                    <div className="flex items-center">
-                      <Star className="w-4 h-4 text-yellow-400 mr-1 fill-current" />
-                      <span className="font-medium">{courseData.rating}</span>
-                    </div>
-                    {/* <div className="flex items-center">
-                      <Clock className="w-4 h-4 mr-1 text-blue-600" />
-                      <span className="font-medium">{courseData.duration}</span>
-                    </div> */}
-                  </div>
+                </div>
+                <div className="flex items-center">
+                  <Star className="w-4 h-4 text-yellow-400 mr-1 fill-current" />
+                  <span className="font-medium">{courseData.rating}</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm text-red-600">
+                  <Clock size={16} className="text-red-500" />
+                  <span className="font-bold">Deadline: 15th May</span>
+                </div>
                 </div>
                 
+                <div className="flex items-center gap-3 mb-1 mt-4"></div>
+            <div className="flex items-center gap-3 mb-1 mt-4">
+            <button className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-4 rounded-xl font-black text-sm hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-2">
+              {/* <ShoppingCart size={16} /> */}
+              Enrol
+            </button>
+            <span className="text-2xl font-black text-green-600">
+              ₹1000
+            </span>
+            <span className="text-lg font-bold text-gray-400 line-through">
+              ₹2000
+            </span>
+            {/* <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-black">
+              {Math.round((1 - course.discountedPrice / course.originalPrice) * 100)}% OFF
+            </span> */}
+            
+          </div>  
+          </div>
+          
                 {/* Right side - Small Certificate Preview */}
                 <div className="lg:col-span-1">
-                  <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-lg p-4 relative overflow-hidden">
-                    <div className={`bg-white rounded-lg p-4 border border-gray-200 transition-all duration-300 ${!isEnrolled ? 'blur-sm' : ''}`}>
-                      <div className="text-center">
-                        <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full mx-auto mb-2 flex items-center justify-center">
-                          <Award className="w-4 h-4 text-white" />
+                  <div className="lg:col-span-1">
+                          <div className="w-full aspect-video bg-gray-100 rounded-lg overflow-hidden relative">
+                          <img
+                            src="/images/certificates/Certificate.jpeg"
+                            alt="Course Completion Certificate"
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                            e.currentTarget.style.display = 'none';
+                            e.currentTarget.parentElement!.innerHTML = '<div class="w-full h-full bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center"><div class="text-center"><Award class="w-8 h-8 mx-auto mb-2 text-blue-500" /><p class="text-sm font-medium text-gray-600">Certificate Preview</p></div></div>';
+                            }}
+                          />
+                          
+                          {/* Lock Overlay */}
+                          {!isEnrolled && (
+                            <div className="absolute inset-0 flex items-center justify-center bg-black/40">
+                            <div className="text-center text-white bg-black/70 px-3 py-2 rounded-lg">
+                            <Lock className="w-5 h-5 mx-auto mb-1" />
+                            <p className="text-xs font-semibold">Enroll to unlock</p>
+                            </div>
+                            </div>
+                          )}
+                          </div>
                         </div>
-                        <h4 className="text-sm font-bold text-gray-800 mb-1">CERTIFICATE</h4>
-                        <p className="text-xs text-gray-600 mb-2">Completion Certificate</p>
-                        <p className="text-xs font-semibold text-blue-600">{courseData.title}</p>
-                      </div>
-                    </div>
-                    {!isEnrolled && (
-                      <div className="absolute inset-0 flex items-center justify-center bg-black/20 backdrop-blur-sm rounded-lg">
-                        <div className="text-center text-white bg-black/60 px-3 py-2 rounded-lg">
-                          <Lock className="w-4 h-4 mx-auto mb-1" />
-                          <p className="text-xs font-semibold">Enroll to unlock</p>
-                        </div>
-                      </div>
-                    )}
-                  </div>
                 </div>
               </div>              
-              <div className="flex gap-3 mb-4">
+              {/* <div className="flex gap-3 mb-4">
                 {!isEnrolled ? (
                   <>
                     <button 
@@ -437,9 +543,6 @@ const CourseDetail: React.FC = () => {
                     >
                       🎓 Enroll Now - $299
                     </button>
-                    {/* <button className="px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-xl font-bold text-sm hover:bg-gray-50 hover:border-gray-400 transition-all duration-300">
-                      👀 Preview
-                    </button> */}
                   </>
                 ) : (
                   <>
@@ -457,7 +560,8 @@ const CourseDetail: React.FC = () => {
                     </button>
                   </>
                 )}
-              </div>
+              </div> */}
+                      
             </div>
 
             {/* Content Viewer */}
@@ -488,7 +592,72 @@ const CourseDetail: React.FC = () => {
                 </div>
               </div>
             )}            {/* Course Content */}
+                     {/* About Course */}
+            {/* <div className="bg-white rounded-xl p-6 shadow-lg border-2">
+              <h3 className="text-xl font-black bg-gradient-to-r from-green-600 to-teal-600 bg-clip-text text-transparent mb-4">
+                ℹ️ About this Course
+              </h3>
+              <div className="prose prose-sm text-gray-600 space-y-4">
+                <p>
+                  Welcome to this comprehensive course designed to provide you with in-depth knowledge and practical
+                  skills in Physics Basics! Whether you're a beginner or looking to advance your expertise, this course
+                  is structured to cater to learners at all levels.
+                </p>
+                <p>
+                  The course is divided into several modules, each covering a key area that builds upon the previous
+                  one. You'll engage with a mix of theoretical content, practical exercises, and real-world
+                  applications.
+                </p>
+              </div>
+            </div>
+          </div>   */}
+          {/* Challenge Content */}
             <div className="bg-white rounded-xl p-6 shadow-lg border-2">
+              {/* Navigation Tabs */}
+              <div className="flex border-b border-gray-100 mb-6">
+                {[
+                  { id: "overview", label: "Overview", icon: Target },
+                  { id: "content", label: "Contents", icon: Clock },
+                  { id: "faqs", label: "FAQs", icon: BookOpen },
+                ].map((tab) => (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActiveTab(tab.id as any)}
+                    className={`flex-1 px-6 py-4 text-sm font-bold transition-all duration-300 flex items-center justify-center space-x-2 rounded-t-lg ${
+                      activeTab === tab.id
+                        ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white"
+                        : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+                    }`}
+                  >
+                    <tab.icon className="w-4 h-4" />
+                    <span>{tab.label}</span>
+                  </button>
+                ))}
+              </div>
+
+              {/* Tab Content */}
+              <div>
+                
+                {/* Overview Tab */}
+                {activeTab === "overview" && (
+                  <div className="space-y-8">
+                    <div>
+                      <h3 className="text-xl font-black bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
+                        📚 About InnoVenture 2025
+                      </h3>
+                      <div className="prose prose-sm text-gray-600 space-y-4">
+                        {courseData.longDescription.split("\n\n").map((paragraph, index) => (
+                          <p key={index} className="leading-relaxed">
+                            {paragraph}
+                          </p>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {activeTab === "content" && (
+                  <div className="bg-white rounded-xl p-6 shadow-lg border-2">
               <h3 className="text-xl font-black bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-6">
                 📚 Course Content
               </h3>
@@ -578,25 +747,44 @@ const CourseDetail: React.FC = () => {
                   </div>
                 ))}
               </div>
-            </div>            {/* About Course */}
-            <div className="bg-white rounded-xl p-6 shadow-lg border-2">
-              <h3 className="text-xl font-black bg-gradient-to-r from-green-600 to-teal-600 bg-clip-text text-transparent mb-4">
-                ℹ️ About this Course
-              </h3>
-              <div className="prose prose-sm text-gray-600 space-y-4">
-                <p>
-                  Welcome to this comprehensive course designed to provide you with in-depth knowledge and practical
-                  skills in Physics Basics! Whether you're a beginner or looking to advance your expertise, this course
-                  is structured to cater to learners at all levels.
-                </p>
-                <p>
-                  The course is divided into several modules, each covering a key area that builds upon the previous
-                  one. You'll engage with a mix of theoretical content, practical exercises, and real-world
-                  applications.
-                </p>
+            </div>   
+                )}
+
+                {/* FAQs Tab */}
+                {activeTab === "faqs" && (
+                  <div className="space-y-6">
+                    <h3 className="text-xl font-black bg-gradient-to-r from-green-600 to-teal-600 bg-clip-text text-transparent mb-6">
+                      ❓ Frequently Asked Questions
+                    </h3>
+                    <div className="space-y-4">
+                      {faqs.map((faq) => (
+                        <div key={faq.id} className="border border-gray-200 rounded-lg">
+                          <Collapsible open={faq.isOpen} onOpenChange={() => toggleFAQ(faq.id)}>
+                            <CollapsibleTrigger className="w-full">
+                              <div className="p-4 text-left hover:bg-gray-50 transition-colors flex items-center justify-between">
+                                <h5 className="font-semibold text-gray-900">{faq.question}</h5>
+                                {faq.isOpen ? (
+                                  <ChevronDown className="w-5 h-5 text-gray-500" />
+                                ) : (
+                                  <ChevronRight className="w-5 h-5 text-gray-500" />
+                                )}
+                              </div>
+                            </CollapsibleTrigger>
+                            <CollapsibleContent>
+                              <div className="px-4 pb-4">
+                                <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
+                              </div>
+                            </CollapsibleContent>
+                          </Collapsible>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
               </div>
             </div>
-          </div>          {/* Sidebar */}
+          {/* Sidebar */}
           <div className="space-y-6">            {/* Associated Challenge */}
             <Card className="bg-white shadow-lg border-2">
               <CardHeader className="pb-4">
@@ -659,27 +847,27 @@ const CourseDetail: React.FC = () => {
             <Card className="bg-white shadow-lg border-2">
               <CardHeader className="pb-4">
               <CardTitle className="text-xl font-black bg-gradient-to-r from-indigo-600 to-cyan-600 bg-clip-text text-transparent">
-                🤝 Our Partners
+              🤝 Our Partners
               </CardTitle>
               <p className="text-gray-600 text-sm font-medium">Trusted by leading institutions</p>
               </CardHeader>
-                <CardContent>
-                <div className="space-y-4">
-                {partners.map((partner, index) => (
-                <div
-                  key={index}
-                  className="bg-gray-30 rounded-lg hover:bg-gray-100 transition-colors p-3"
-                >
-                  <h4 className="font-medium text-gray-900 mb-3">{partner.name}</h4>
-                  <div className="w-full aspect-video bg-gray-200 rounded-lg overflow-hidden">
-                  <img
-                  src={partner.logo || "/placeholder.svg"}
-                  alt={partner.name}
-                  className="w-full h-full object-contain"
-                  />
-                  </div>
+              <CardContent>
+              <div className="space-y-2">
+              {partners.map((partner, index) => (
+              <div
+                key={index}
+                className="bg-gray-30 rounded-lg hover:bg-gray-100 transition-colors p-2"
+              >
+                <h4 className="font-bold text-gray-900 mb-2 text-center">{partner.name}</h4>
+                <div className="w-full aspect-video bg-gray-200 rounded-lg overflow-hidden">
+                <img
+                src={partner.logo || "/placeholder.svg"}
+                alt={partner.name}
+                className="w-full h-full object-contain"
+                />
                 </div>
-                ))}
+              </div>
+              ))}
               </div>
               </CardContent>
             </Card>

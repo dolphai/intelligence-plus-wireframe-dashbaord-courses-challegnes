@@ -119,16 +119,16 @@ const Challenges: React.FC = () => {
     }  };
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="p-6">
-        {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-5xl font-black bg-gradient-to-r from-slate-900 via-purple-900 to-indigo-900 bg-clip-text text-transparent mb-3 tracking-tight">
-            Challenges
-          </h1>
-          <p className="text-xl font-medium text-slate-600 tracking-wide">
-            Discover and participate in exciting challenges to test your skills
-          </p>
-        </div>        {/* Search and Filter Section */}
+      <div className="p-4 ">
+       <div className="mb-4">
+        <h1 className="text-4xl font-black bg-gradient-to-r from-slate-900 via-purple-900 to-indigo-900 bg-clip-text text-transparent mb-1 tracking-tight antialiased leading-normal">
+          Challenges
+        </h1>
+        <p className="text-xl font-medium text-slate-600 tracking-wide">
+          Discover and participate in exciting challenges to test your skills
+        </p>
+
+        </div>
         <div className="flex flex-col md:flex-row gap-4 mb-8">
           {/* Search */}
           <div className="relative flex-1">

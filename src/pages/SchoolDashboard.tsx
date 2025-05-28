@@ -155,8 +155,8 @@ const SchoolDashboard: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto p-6">        {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-5xl font-black bg-gradient-to-r from-slate-900 via-purple-900 to-indigo-900 bg-clip-text text-transparent mb-3 tracking-tight">
+        <div className="mb-4">
+          <h1 className="text-4xl font-black bg-gradient-to-r from-slate-900 via-purple-900 to-indigo-900 bg-clip-text text-transparent mb-1 tracking-tight">
             School Dashboard
           </h1>
           <p className="text-xl font-medium text-slate-600 tracking-wide">
