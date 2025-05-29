@@ -175,7 +175,7 @@ const Courses: React.FC = () => {
           </h1>
 
           <p className="text-xl font-medium text-slate-600 tracking-wide">
-            Discover and enroll in comprehensive courses to enhance your skills
+            Discover and learn from top rated expert courses designed to enhance your skills .
           </p>
         </div>        {/* Search and Filter Section */}
         <div className="flex flex-col lg:flex-row gap-4 mb-8">

@@ -124,11 +124,12 @@ const SchoolDashboard: React.FC = () => {
       <div className="max-w-7xl mx-auto p-6">
         {/* Breadcrumb */}
         <div className="mb-4 flex items-center justify-between">
-          <div>
-        
-        <h1 className="text-2xl font-bold text-violet-800">Welcome<br />{schoolName}</h1>
+          <div className="flex-1 flex justify-center">
+        <h1 className="text-2xl font-bold text-violet-800 text-center">
+          Welcome, {schoolName}
+        </h1>
           </div>
-          <img src={logoUrl} alt="Intelligence Plus" className="h-10" />
+          <img src={logoUrl} alt="Intelligence Plus" className="h-10 ml-4" />
         </div>
         
         {/* Purple modern line */}
@@ -137,13 +138,15 @@ const SchoolDashboard: React.FC = () => {
         {/* Statistics Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           <div className="bg-white rounded-2xl p-6 shadow-sm flex flex-col items-center">
-            <div className="text-lg font-semibold text-gray-500 mb-1">Total Courses</div>
-            <div className="text-3xl font-black text-blue-600">{totalCourses}</div>
-          </div>
-          <div className="bg-white rounded-2xl p-6 shadow-sm flex flex-col items-center">
             <div className="text-lg font-semibold text-gray-500 mb-1">Total Students</div>
             <div className="text-3xl font-black text-pink-600">{totalStudents}</div>
           </div>
+
+          <div className="bg-white rounded-2xl p-6 shadow-sm flex flex-col items-center">
+            <div className="text-lg font-semibold text-gray-500 mb-1">Total Courses</div>
+            <div className="text-3xl font-black text-blue-600">{totalCourses}</div>
+          </div>
+          
           <div className="bg-white rounded-2xl p-6 shadow-sm flex flex-col items-center">
             <div className="text-lg font-semibold text-gray-500 mb-1">Total Challenges</div>
             <div className="text-3xl font-black text-cyan-600">{totalChallenges}</div>

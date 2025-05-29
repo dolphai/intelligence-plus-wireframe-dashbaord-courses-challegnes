@@ -72,11 +72,12 @@ const StudentDashboard: React.FC = () => {
       <div className="max-w-7xl mx-auto p-6">
         {/* Breadcrumb */}
         <div className="mb-4 flex items-center justify-between">
-          <div>
-        
-        <h1 className="text-2xl font-bold text-violet-800">Welcome<br />{studentName}</h1>
+          <div className="flex-1 flex justify-center">
+        <h1 className="text-2xl font-bold text-violet-800 text-center">
+          Welcome, {studentName}
+        </h1>
           </div>
-          <img src={logoUrl} alt="Intelligence Plus" className="h-10" />
+          <img src={logoUrl} alt="Intelligence Plus" className="h-10 ml-4" />
         </div>
         
         {/* Purple modern line */}
@@ -88,10 +89,6 @@ const StudentDashboard: React.FC = () => {
           <div className="bg-white rounded-2xl p-6 shadow-sm flex flex-col items-center">
             <div className="text-lg font-semibold text-gray-500 mb-1">Enrolled Courses</div>
             <div className="text-3xl font-black text-blue-600">{stats.enrolledCourses}</div>
-          </div>
-          <div className="bg-white rounded-2xl p-6 shadow-sm flex flex-col items-center">
-            <div className="text-lg font-semibold text-gray-500 mb-1">Completed Assignments</div>
-            <div className="text-3xl font-black text-green-600">{stats.completedAssignments}</div>
           </div>
           <div className="bg-white rounded-2xl p-6 shadow-sm flex flex-col items-center">
             <div className="text-lg font-semibold text-gray-500 mb-1">Active Challenges</div>

@@ -78,21 +78,28 @@ const MainChallengeDetails = () => {
           answer: 'Teams are evaluated based on creativity, technical feasibility, presentation skills, and teamwork.'
         }
       ],      partners: [
+        
         {
           _id: 'partner1',
-          name: 'Education World',
-          imageLink: '/images/partners/education_world.png',
-          partnerLink: 'https://example.com/education-world'
-        },
-        {
-          _id: 'partner2',
-          name: 'IIT Hydrabad',
+          name: 'Knowledge Partner',
           imageLink: '/images/partners/iit.png',
           partnerLink: 'https://example.com/iit-hydrabad'
         },
         {
+          _id: 'partner2',
+          name: 'Outreach Partner - EW',
+          imageLink: '/images/partners/education_world.png',
+          partnerLink: 'https://example.com/education-world'
+        },
+        {
           _id: 'partner3',
-          name: 'intelligenceplus',
+          name: 'Outreach Partner - APER',
+          imageLink: '/images/partners/aper.jpeg',
+          partnerLink: 'https://example.com/aper'
+        },
+        {
+          _id: 'partner4',
+          name: 'IntelligencePlus',
           imageLink: '/images/partners/intelligenceplus.png',
           partnerLink: 'https://example.com/intelligenceplus'
         }

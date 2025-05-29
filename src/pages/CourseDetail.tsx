@@ -20,6 +20,7 @@ import {
   Folder,
   Calendar,
   Trophy,
+  Book,
 } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
@@ -179,16 +180,17 @@ const CourseDetail: React.FC = () => {
     description:
       "Are you ready to unlock the power of physics and build a solid foundation in mathematical thinking using a comprehensive approach? Whether you're a student seeking to enhance your skills or someone looking to refresh your skills.",
     instructor: "Dr. Neil Science",
-    longDescription: "This course offers a deep dive into the fundamental concepts of physics, with a focus on real-world applications and problem-solving techniques. Through engaging lectures, interactive simulations, and hands-on experiments, students will develop a thorough understanding of key principles and their relevance in everyday life.This course is designed for beginners, providing a step-by-step introduction to physics concepts such as motion, forces, energy, and waves. Students will learn how to apply mathematical reasoning to solve complex problems and gain a solid foundation for further studies in physics or related fields.",
+    longDescription: "Innoventure Innovation course is a pioneering 1st of its kind program with age appropriate courses for grades 1 to 9 teaching world class innovation techniques and frameworks using two of the most powerful pedagogy methods : 1. The case study method pioneering at Harvard University and 2. Engaging Storytelling in video format Each grade is empowered with 3 frameworks of ideation and innovation with numerous examples and applications giving conceptual clarity and relevance. The thought provoking application based and open ended subjective questions shifts the students  into a solution creator mindset. On completion, children get an important certificate of skill mastery and most importantly it's FREE for all the students.",
     rating: 4.8,
     students: 1234,
     duration: "8 weeks",
     level: "Beginner",
     tags: ["Best Seller", "Most Popular", "Beginner"],
   };  const partners = [
-    { name: "Intelligence Plus", logo: "/images/partners/intelligenceplus.png" },
-    { name: "IIT Hyderabad", logo: "/images/partners/iit.png" },
-    { name: "Education World", logo: "/images/partners/education_world.png" },
+    { name: "Knowledge Partner", logo: "/images/partners/iit.png" },
+    { name: "Outreach Partner - EW", logo: "/images/partners/education_world.png" },
+    { name: "Outreach Partner - APER", logo: "/images/partners/aper.jpeg" },
+    { name: "IntelligencePlus", logo: "/images/partners/intelligenceplus.png" }
   ];
     const [faqs, setFaqs] = useState<FAQ[]>([
       {
@@ -405,6 +407,14 @@ const CourseDetail: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main Content */}
             <div className="lg:col-span-2 space-y-6">
+              <div className="w-full h-64 relative">
+                <img
+                  src="/images/challenges/banner.png"
+                  alt="InnoVenture Challenge Banner"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-900/20 to-transparent"></div>
+              </div>
             {/* Course Header */}
             <div className="bg-white rounded-lg p-6 shadow-sm relative">
               {/* Share Button */}
@@ -617,7 +627,7 @@ const CourseDetail: React.FC = () => {
               <div className="flex border-b border-gray-100 mb-6">
                 {[
                   { id: "overview", label: "Overview", icon: Target },
-                  { id: "content", label: "Contents", icon: Clock },
+                  { id: "content", label: "Contents", icon: Book },
                   { id: "faqs", label: "FAQs", icon: BookOpen },
                 ].map((tab) => (
                   <button
@@ -788,37 +798,36 @@ const CourseDetail: React.FC = () => {
           <div className="space-y-6">            {/* Associated Challenge */}
             <Card className="bg-white shadow-lg border-2">
               <CardHeader className="pb-4">
-              <CardTitle className="text-xl font-black bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                🏆 Associated Challenge
-              </CardTitle>
-              <p className="text-gray-600 text-sm font-medium">Test your skills and compete</p>
+                <CardTitle className="text-xl font-black bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                  🏆 Associated Challenge
+                </CardTitle>
+                <p className="text-gray-600 text-sm font-medium">Showcase your skills and get awards</p>
               </CardHeader>
               <CardContent>
-              {/* Single Challenge Card */}
-              <div className="bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer transform hover:-translate-y-1 border border-gray-100 overflow-hidden">
-                {/* Challenge Thumbnail */}
-                <div className="w-full h-30 bg-gradient-to-br from-blue-500 to-purple-600 relative overflow-hidden">
-                <img 
-                  src="/images/challenges/innoventure_challenge.png"
-                  alt="Innovation Championship 2025"
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                  e.currentTarget.style.display = 'none';
-                  }}
-                />
-                
-                {/* Registration Status Badge */}
-                <div className="absolute top-2 right-2">
-                  <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-bold bg-green-100 text-green-800 border border-green-200">
-                  Open
-                  </span>
-                </div>
-                </div>
+                {/* Single Challenge Card */}
+                <div className="bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100 overflow-hidden">
+                  {/* Challenge Thumbnail */}
+                  <div className="w-full h-30 bg-gradient-to-br from-blue-500 to-purple-600 relative overflow-hidden">
+                    <img 
+                      src="/images/challenges/innoventure_challenge.png"
+                      alt="Innovation Championship 2025"
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                      }}
+                    />
+                    {/* Registration Status Badge */}
+                    <div className="absolute top-2 right-2">
+                      <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-bold bg-green-100 text-green-800 border border-green-200">
+                        Open
+                      </span>
+                    </div>
+                  </div>
 
-                {/* Card Content */}
-                <div className="p-4">
-                {/* Challenge Title */}
-                 <div className="h-12 mb-3">
+                  {/* Card Content */}
+                  <div className="p-4">
+                    {/* Challenge Title */}
+                    <div className="h-12 mb-3">
                       <h3 className="text-lg font-black text-gray-800 tracking-tight leading-tight line-clamp-2">
                         Innovation Championship 2025
                       </h3>
@@ -826,32 +835,43 @@ const CourseDetail: React.FC = () => {
                         <span className="font-bold text-purple-700">by Smith Eve</span>
                       </div>
                     </div>
-                
-                {/* Challenge Description */}
-                <div className="mb-3">
-                  <p className="text-sm text-gray-600 leading-relaxed line-clamp-2">
-                  A comprehensive challenge focusing on innovative problem-solving and creative thinking.
-                  </p>
-                </div>
+                    
+                    {/* Challenge Description */}
+                    <div className="mb-3">
+                      <p className="text-sm text-gray-600 leading-relaxed line-clamp-2">
+                        A comprehensive challenge focusing on innovative problem-solving and creative thinking.
+                      </p>
+                    </div>
 
-                {/* Challenge Stats */}
-                <div className="flex items-center gap-2 text-sm text-gray-600">
-                  <Clock size={14} className="text-red-500" />
-                  <span className="font-medium">Deadline: Nov 30, 2024</span>
+                    {/* Challenge Stats */}
+                    <div className="flex items-center gap-2 text-sm text-gray-600">
+                      <Clock size={14} className="text-red-500" />
+                      <span className="font-medium">Deadline: Nov 30, 2024</span>
+                    </div>
+
+                    {/* Go to Challenge Button */}
+                    <div className="mt-4">
+                      <Link
+                        to="/challenges/1"
+                        className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold rounded-lg shadow hover:from-green-600 hover:to-emerald-700 transition-all text-sm"
+                      >
+                        Go to Challenge
+                        <Trophy className="w-4 h-4" />
+                      </Link>
+                    </div>
+                  </div>
                 </div>
-                </div>
-              </div>
               </CardContent>
             </Card>
             {/* Partners */}
             <Card className="bg-white shadow-lg border-2">
-              <CardHeader className="pb-4">
-              <CardTitle className="text-xl font-black bg-gradient-to-r from-indigo-600 to-cyan-600 bg-clip-text text-transparent">
-              🤝 Our Partners
-              </CardTitle>
-              <p className="text-gray-600 text-sm font-medium">Trusted by leading institutions</p>
-              </CardHeader>
-              <CardContent>
+                <CardHeader className="pb-4 text-center">
+                <CardTitle className="text-xl font-black bg-gradient-to-r from-indigo-600 to-cyan-600 bg-clip-text text-transparent">
+                  🤝 Our Partners
+                </CardTitle>
+                <p className="text-gray-600 text-sm font-medium">Trusted by leading institutions</p>
+                </CardHeader>
+                <CardContent>
               <div className="space-y-2">
               {partners.map((partner, index) => (
               <div

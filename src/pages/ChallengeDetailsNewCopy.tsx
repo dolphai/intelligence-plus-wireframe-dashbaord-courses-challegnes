@@ -192,9 +192,10 @@ The key outcome of this challenge is to prepare students for solving real-life c
   }
 
   const partners = [
-    { name: "Intelligence Plus", logo: "/images/partners/intelligenceplus.png" },
-    { name: "IIT Hyderabad", logo: "/images/partners/iit.png" },
-    { name: "Education World", logo: "/images/partners/education_world.png" },
+    { name: "Knowledge Partner", logo: "/images/partners/iit.png" },
+    { name: "Outreach Partner - EW", logo: "/images/partners/education_world.png" },
+    { name: "Outreach Partner - APER", logo: "/images/partners/aper.jpeg" },
+    { name: "IntelligencePlus", logo: "/images/partners/intelligenceplus.png" }
   ]
 
   const toggleRound = (roundId: number) => {

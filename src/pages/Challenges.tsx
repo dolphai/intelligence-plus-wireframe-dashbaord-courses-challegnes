@@ -125,7 +125,7 @@ const Challenges: React.FC = () => {
           Challenges
         </h1>
         <p className="text-xl font-medium text-slate-600 tracking-wide">
-          Discover and participate in exciting challenges to test your skills
+          Discover and participate in exciting challenges to show case your skills and get awards!
         </p>
 
         </div>

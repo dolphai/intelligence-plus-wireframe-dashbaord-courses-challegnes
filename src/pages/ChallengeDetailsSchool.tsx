@@ -111,9 +111,10 @@ const ChallengeDetails: React.FC = () => {
   };
 
   const partners: Partner[] = [
-    { name: "Education Word", logoUrl: "/images/partners/education_world.png" }, // Placeholder
-    { name: "IIT Hydrabad", logoUrl: "/images/partners/iit.png" }, // Placeholder
-    { name: "Intelligence Plus", logoUrl: "/images/partners/intelligenceplus.png" }, // Placeholder
+    { name: "Knowlege Partner", logoUrl: "/images/partners/iit.png" }, // Placeholder
+    { name: "Outreach Partner - EW", logoUrl: "/images/partners/education_world.png" }, // Placeholder
+    { name: "Outreach Partner - APER", logoUrl: "/images/partners/aper.jpeg" }, // Placeholder
+    { name: "IntelligencePlus", logoUrl: "/images/partners/intelligenceplus.png" }, // Placeholder
   ];
 
   const getStatusColor = (status: string) => {

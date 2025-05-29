@@ -211,19 +211,24 @@ The key outcome of this challenge is to prepare students for solving real-life c
 
   const partners = [
     { 
-      name: "Intelligence Plus", 
-      logo: "/images/partners/intelligenceplus.png",
-      description: "Leading educational technology platform for student innovation"
-    },
-    { 
-      name: "IIT Hyderabad", 
+      name: "Knowledge Partner", 
       logo: "/images/partners/iit.png",
       description: "Premier technical institute supporting innovation and research"
     },
     { 
-      name: "Education World", 
+      name: "Outreach Partner - EW", 
       logo: "/images/partners/education_world.png",
       description: "India's largest education community and resource platform"
+    },
+    { 
+      name: "Outreach Partner - APER", 
+      logo: "/images/partners/aper.jpeg",
+      description: "India's largest education community and resource platform"
+    },
+    { 
+      name: "IntelligencePlus", 
+      logo: "/images/partners/intelligenceplus.png",
+      description: "Leading educational technology platform for student innovation"
     },
   ]
 
