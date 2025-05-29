@@ -36,7 +36,7 @@ const SchoolProfilePage: React.FC = () => {
   const [profileData, setProfileData] = useState<SchoolProfileData>({
     schoolName: 'St. Mary\'s International School',
     establishedYear: '1985',
-    schoolType: 'Private International School',
+    schoolType: 'SSC',
     address: '123 Education Avenue',
     city: 'Springfield',
     state: 'Illinois',
@@ -128,18 +128,13 @@ const SchoolProfilePage: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Profile Card */}
           <div className="lg:col-span-1">
-            <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 sticky top-6">
+            <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 sticky top-6 ">
               {/* School Logo */}
-              <div className="text-center mb-6">
-                {/* <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4">
-                  {schoolInitials}
-                </div> */}
-                <h2 className="text-xl font-bold text-gray-800 mb-1">
-                  {profileData.schoolName}
-                </h2>
-                <p className="text-sm text-gray-500">{profileData.schoolType}</p>
-                <p className="text-xs text-gray-400 mt-1">Est. {profileData.establishedYear}</p>
-              </div>
+              <div className="flex-1 text-center sm:text-left mb-6 border-b border-gray-200">
+                  <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">
+                    {profileData.schoolName} 
+                  </h2>
+                </div>
 
               {/* Quick Stats */}
               <div className="space-y-3">

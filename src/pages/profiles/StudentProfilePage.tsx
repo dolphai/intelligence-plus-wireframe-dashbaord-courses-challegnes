@@ -156,7 +156,6 @@ const StudentProfilePage: React.FC = () => {
                   <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">
                     {profileData.firstName} {profileData.lastName}
                   </h2>
-                  <p className="text-sm text-gray-500 font-medium">Student Profile</p>
                 </div>
               </div>
 
