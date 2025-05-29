@@ -424,16 +424,7 @@ const SchoolProfilePage: React.FC = () => {
                     <Mail size={16} />
                     School Email
                   </label>
-                  {isEditing ? (
-                    <input
-                      type="email"
-                      value={editedData.schoolEmail}
-                      onChange={(e) => setEditedData(prev => ({ ...prev, schoolEmail: e.target.value }))}
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    />
-                  ) : (
-                    <p className="p-3 bg-gray-50 rounded-lg text-gray-800">{profileData.schoolEmail}</p>
-                  )}
+                  <p className="p-3 bg-gray-50 rounded-lg text-gray-800">{profileData.schoolEmail}</p>
                 </div>
 
                 {/* School Phone */}

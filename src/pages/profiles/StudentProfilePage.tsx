@@ -11,7 +11,7 @@ interface StudentProfileData {
   customSchoolName?: string;
   schoolAddress?: string;
   grade: string;
-  schoolEmail: string;
+  mainEmail: string;
   updatedAt: string;
 }
 
@@ -54,7 +54,7 @@ const StudentProfilePage: React.FC = () => {
     alternate_contact: '+1234567890',
     schoolName: 'St. Mary\'s International School',
     grade: '10th Grade',
-    schoolEmail: 'sarah.nelson@stmarys.edu',
+    mainEmail: 'sarah.nelson@stmarys.edu',
     updatedAt: '2025-05-20'
   });
 
@@ -225,13 +225,24 @@ const StudentProfilePage: React.FC = () => {
                     </div>
                   )}
                 </div>
-
-                {/* Personal Email and Contact - Side by side on md+ screens */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Main Email and Contact - Side by side on md+ screens */}
                   <div className="group">
                     <label className="flex items-center gap-2 text-xs font-bold text-gray-700 mb-3 uppercase tracking-wider">
                       <Mail size={16} className="text-purple-500" />
-                      Personal Email
+                      Main Email
+                    </label>
+                      <div className="p-3 md:p-4 bg-gradient-to-r from-gray-50 to-gray-100 rounded-xl text-gray-800 text-base font-medium border border-gray-100 break-all">
+                        {profileData.mainEmail}
+                      </div>
+                  </div>
+                {/* Alternative Email and Contact - Side by side on md+ screens */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="group">
+    
+                    
+                    <label className="flex items-center gap-2 text-xs font-bold text-gray-700 mb-3 uppercase tracking-wider">
+                      <Mail size={16} className="text-purple-500" />
+                      Alternaive Email
                     </label>
                     {isEditing ? (
                       <input
@@ -430,23 +441,7 @@ const StudentProfilePage: React.FC = () => {
                   </div>
 
                   <div className="group">
-                    <label className="flex items-center gap-2 text-xs font-bold text-gray-700 mb-3 uppercase tracking-wider">
-                      <Mail size={16} className="text-blue-500" />
-                      School Email
-                    </label>
-                    {isEditing ? (
-                      <input
-                        type="email"
-                        value={editedData.schoolEmail}
-                        onChange={(e) => setEditedData(prev => ({ ...prev, schoolEmail: e.target.value }))}
-                        className="w-full p-3 md:p-4 border-2 border-gray-200 rounded-xl focus:ring-3 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-300 bg-white/80 text-base font-medium"
-                        required
-                      />
-                    ) : (
-                      <div className="p-3 md:p-4 bg-gradient-to-r from-gray-50 to-gray-100 rounded-xl text-gray-800 text-base font-medium border border-gray-100 break-all">
-                        {profileData.schoolEmail}
-                      </div>
-                    )}
+                    
                   </div>
                 </div>
               </div>
