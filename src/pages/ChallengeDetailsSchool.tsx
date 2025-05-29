@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 
 const ChallengeDetails: React.FC = () => {
   const [activeTab, setActiveTab] = useState('overview');
+  const [showAllResources, setShowAllResources] = useState(false);
   const [activeRound, setActiveRound] = useState(0);
   // Dynamic stat and student data for rounds and grades
   const [selectedGrade, setSelectedGrade] = useState('5');
@@ -70,6 +71,8 @@ const ChallengeDetails: React.FC = () => {
   const resources = [
     { name: "Challenge Guidelines", url: "/files/challenge-guidelines.pdf", size: "2.5 MB" },
     { name: "Sample Problems", url: "/files/sample-problems.pdf", size: "1.8 MB" },
+    { name: "Submission Template", url: "/files/submission-template.docx", size: "0.5 MB" },
+    { name: "Evaluation Criteria", url: "/files/evaluation-criteria.pdf", size: "1.2 MB" },
     { name: "Submission Template", url: "/files/submission-template.docx", size: "0.5 MB" },
     { name: "Evaluation Criteria", url: "/files/evaluation-criteria.pdf", size: "1.2 MB" },
   ];
@@ -279,7 +282,66 @@ const ChallengeDetails: React.FC = () => {
             </table>
           </div>
         </div>
+        {/* Resources Section */}
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">Challenge Resources</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            {(showAllResources ? resources : resources.slice(0, 4)).map((resource, idx) => (
+              <div
+          key={idx}
+          className="flex items-center justify-between p-3 bg-gray-50 rounded-lg border border-gray-200 hover:bg-gray-100 transition-colors"
+              >
+          <div className="flex items-center gap-3">
+            <div className="p-1.5 bg-blue-100 rounded-lg">
+              <Download size={18} className="text-blue-600" />
+            </div>
+            <div>
+              <h4 className="font-medium text-gray-900 text-sm">{resource.name}</h4>
+            </div>
+          </div>
+          <button className="px-3 py-1.5 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors text-xs font-medium">
+            Download
+          </button>
+              </div>
+            ))}
+          </div>
+          {resources.length > 4 && (
+            <div className="flex justify-center mt-2">
+              <button
+          className="text-blue-600 hover:underline text-sm font-semibold bg-transparent px-2 py-1 rounded"
+          onClick={() => setShowAllResources((prev) => !prev)}
+          type="button"
+              >
+          {showAllResources ? 'Show Less' : 'View More'}
+              </button>
+            </div>
+          )}
+        </div>
+        
 
+        
+        
+
+          </div>
+          {/* Sidebar */}
+          <div className="space-y-6">
+            {/* Partners Section */}
+            <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200">
+              <h3 className="text-xl font-black bg-gradient-to-r from-indigo-600 to-cyan-600 bg-clip-text text-transparent mb-2">🤝 Our Partners</h3>
+              <p className="text-gray-600 text-sm font-medium mb-4">Trusted by leading institutions</p>
+              <div className="space-y-4">
+                {partners.map((partner) => (
+                  <div key={partner.name} className="border p-3 rounded-lg flex flex-col items-center text-center bg-gray-50 hover:bg-gray-100 transition-colors">
+                    <div className="w-full aspect-video bg-gray-200 rounded-lg overflow-hidden mb-2">
+                      <img src={partner.logoUrl} alt={partner.name} className="w-full h-full object-contain" />
+                    </div>
+                    <p className="font-bold text-gray-700">{partner.name}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
         {/* Redesigned Challenge Rounds Section (as per sketch) */}
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
           {/* Rounds Tabs */}
@@ -316,40 +378,48 @@ const ChallengeDetails: React.FC = () => {
               </button>
             ))}
           </div>
-
+          
           {/* Stats and Actions - Improved UI, now dynamic */}
           <div className="flex flex-col md:flex-row md:items-center md:gap-8 gap-4 mb-6">
             <div className="flex flex-row gap-8 bg-gray-50 rounded-xl px-6 py-4 shadow-sm border border-gray-100 w-fit">
-              <div className="flex flex-col items-center ml-12">
+              <div className="flex flex-col items-center ml-12 mr-20">
                 <span className="text-sm text-gray-500 font-medium mb-1">Registered</span>
                 <span className="text-2xl font-black text-blue-700">{currentStat.registered}</span>
               </div>
-              <div className="flex flex-col items-center ml-12">
+              
+            </div>
+            <div className="flex flex-row gap-8 bg-gray-50 rounded-xl px-6 py-4 shadow-sm border border-gray-100 w-fit">
+              <div className="flex flex-col items-center ml-12 mr-20">
                 <span className="text-sm text-gray-500 font-medium mb-1">Appeared</span>
                 <span className="text-2xl font-black text-purple-700">{currentStat.appeared}</span>
               </div>
-              <div className="flex flex-col items-center ml-12">
+              
+            </div>
+            <div className="flex flex-row gap-8 bg-gray-50 rounded-xl px-6 py-4 shadow-sm border border-gray-100 w-fit">
+              <div className="flex flex-col items-center ml-12 mr-20">
                 <span className="text-sm text-gray-500 font-medium mb-1">Qualified</span>
                 <span className="text-2xl font-black text-green-700">{currentStat.qualified}</span>
               </div>
+              
             </div>
+            
             <div className="flex flex-col gap-2 md:ml-auto">
               <button className="px-4 py-2 bg-gradient-to-r from-green-500 to-blue-500 text-white rounded-lg font-bold flex items-center gap-2 shadow hover:from-green-600 hover:to-blue-600">
                 Grade {currentStat.grade} Report
                 <span className="ml-1">▼</span>
               </button>
-              <button className="px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg font-bold flex items-center gap-2 shadow hover:from-purple-600 hover:to-pink-600">
+              {/* <button className="px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg font-bold flex items-center gap-2 shadow hover:from-purple-600 hover:to-pink-600">
                 Sample Questions
                 <span className="ml-1">↗</span>
-              </button>
+              </button> */}
             </div>
           </div>
         
             {/* Table Controls - Improved */}
             <div className="flex flex-col md:flex-row md:items-center md:gap-6 gap-3 mb-4">
-              <input type="text" placeholder="Search students..." className="px-5 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-400 w-full md:w-96 " />
-              <button className="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-bold flex items-center gap-2 shadow hover:from-blue-700 hover:to-purple-700 ml-[auto]">
-                Download CSV
+              <input type="text" placeholder="Search students..." className="px-5 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-400 w-full md:w-auto flex-1" />
+              <button className="px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-bold flex items-center gap-2 shadow hover:from-blue-700 hover:to-purple-700 ml-[auto]">
+              Download CSV
               </button>
             </div>
 
@@ -381,52 +451,6 @@ const ChallengeDetails: React.FC = () => {
             </table>
           </div>
         </div>
-
-        {/* Resources Section */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Challenge Resources</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {resources.map((resource, idx) => (
-              <div key={idx} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg border border-gray-200 hover:bg-gray-100 transition-colors">
-                <div className="flex items-center gap-3">
-                  <div className="p-2 bg-blue-100 rounded-lg">
-                    <Download size={20} className="text-blue-600" />
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-gray-900">{resource.name}</h4>
-                    <span className="text-sm text-gray-500">{resource.size}</span>
-                  </div>
-                </div>
-                <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium">
-                  Download
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
-        
-
-          </div>
-          {/* Sidebar */}
-          <div className="space-y-6">
-            {/* Partners Section */}
-            <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200">
-              <h3 className="text-xl font-black bg-gradient-to-r from-indigo-600 to-cyan-600 bg-clip-text text-transparent mb-2">🤝 Our Partners</h3>
-              <p className="text-gray-600 text-sm font-medium mb-4">Trusted by leading institutions</p>
-              <div className="space-y-4">
-                {partners.map((partner) => (
-                  <div key={partner.name} className="border p-3 rounded-lg flex flex-col items-center text-center bg-gray-50 hover:bg-gray-100 transition-colors">
-                    <div className="w-full aspect-video bg-gray-200 rounded-lg overflow-hidden mb-2">
-                      <img src={partner.logoUrl} alt={partner.name} className="w-full h-full object-contain" />
-                    </div>
-                    <p className="font-bold text-gray-700">{partner.name}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
         {/* Associated Course Section */}
         {/* <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8"> */}
           {/* Single Course - Horizontal Layout */}
