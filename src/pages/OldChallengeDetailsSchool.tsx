@@ -5,30 +5,6 @@ import { Link } from "react-router-dom"
 const ChallengeDetails: React.FC = () => {
   const [activeTab, setActiveTab] = useState('overview');
   const [activeRound, setActiveRound] = useState(0);
-  // Dynamic stat and student data for rounds and grades
-  const [selectedGrade, setSelectedGrade] = useState('5');
-  const grades = ['All Grades','1','2','3','4','5', '6', '7', '8','9','10'];
-  const rounds = ['Round 1', 'Round 2', 'Finale'];
-  const statData = [
-    { round: 'Round 1', grade: '5', registered: 58, appeared: 50, qualified: 30 },
-    { round: 'Round 2', grade: '5', registered: 60, appeared: 52, qualified: 28 },
-    { round: 'Finale', grade: '5', registered: 62, appeared: 54, qualified: 25 },
-    { round: 'Round 1', grade: '6', registered: 55, appeared: 48, qualified: 27 },
-    { round: 'Round 2', grade: '6', registered: 57, appeared: 50, qualified: 25 },
-    { round: 'Finale', grade: '6', registered: 59, appeared: 51, qualified: 22 },
-    // Add more grades/rounds as needed
-  ];
-  const filteredStats = statData.filter(s => (selectedGrade === 'All Grades' || s.grade === selectedGrade) && s.round === rounds[activeRound]);
-  const currentStat = filteredStats[0] || { registered: 0, appeared: 0, qualified: 0, grade: selectedGrade };
-  const studentsData = [
-    { name: 'Aarav Sharma', grade: '5', email: 'aarav.sharma@email.com', status: 'R2 Qualified' },
-    { name: 'Priya Verma', grade: '5', email: 'priya.verma@email.com', status: 'R1 Qualified' },
-    { name: 'Rahul Singh', grade: '5', email: 'rahul.singh@email.com', status: 'R1 Attempted' },
-    { name: 'Simran Kaur', grade: '6', email: 'simran.kaur@email.com', status: 'R2 Qualified' },
-    { name: 'Vikram Patel', grade: '6', email: 'vikram.patel@email.com', status: 'R1 Attempted' },
-    // Add more students as needed
-  ];
-  const filteredStudents = studentsData.filter(s => selectedGrade === 'All Grades' || s.grade === selectedGrade);
 
   // Mock challenge details
   const challengeDetails = {
@@ -57,14 +33,6 @@ const ChallengeDetails: React.FC = () => {
     { grade: "Grade 6", registered: 85, attempted: 85, qualified: 12 },
     { grade: "Grade 7", registered: 78, attempted: 78, qualified: 10 },
     { grade: "Grade 8", registered: 88, attempted: 88, qualified: 8 },
-  ];
-
-  // Mocked per-round summary data for the new table
-  const roundSummary = [
-    { attempted: 341, qualified: 45, date: '2025-03-01' },
-    { attempted: 320, qualified: 32, date: '2025-04-01' },
-    { attempted: 290, qualified: 20, date: '2025-05-01' },
-    { attempted: 180, qualified: 10, date: '2025-06-01' },
   ];
 
   const resources = [
@@ -122,22 +90,21 @@ const ChallengeDetails: React.FC = () => {
     }
   };
 
-
-
   return (
     <div className="min-h-screen bg-gray-50 p-6">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-4">
-          <h1 className="text-4xl font-black bg-gradient-to-r from-slate-900 via-purple-900 to-indigo-900 bg-clip-text text-transparent mb-1 tracking-tight antialiased leading-normal">
-            Challenge Resources
-          </h1>
-          <p className="text-xl font-medium text-slate-600 tracking-wide">
-            Information and resources for the Innovation Championship 2025
-          </p>
+      <div className="max-w-7xl mx-auto space-y-6">
+       <div className="mb-4">
+      <h1 className="text-4xl font-black bg-gradient-to-r from-slate-900 via-purple-900 to-indigo-900 bg-clip-text text-transparent mb-1 tracking-tight antialiased leading-normal">
+        Challenge Resources
+      </h1>
+
+
+
+        <p className="text-xl font-medium text-slate-600 tracking-wide">
+          Information and resources for the Innovation Championship 2025
+        </p>
+
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Main Content */}
-          <div className="lg:col-span-2 space-y-6">
         {/* Header
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
           <button 
@@ -242,56 +209,20 @@ const ChallengeDetails: React.FC = () => {
           </div>
         </div> */}
 
-
-        {/* Rounds Summary Table */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8 mb-8">
-          <h2 className="text-xl font-bold text-gray-900 mb-4">Round-wise Overview</h2>
-          <div className="overflow-x-auto">
-            <table className="min-w-full border-collapse">
-              <thead>
-                <tr className="border-b-2 border-gray-200">
-                  <th className="py-3 px-4 font-semibold text-gray-900 text-left">&nbsp;</th>
-                  {challengeDetails.rounds.map((round, idx) => (
-                    <th key={round} className="py-3 px-4 font-semibold text-gray-900 text-center">{round}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="border-b border-gray-100">
-                  <td className="py-3 px-4 font-medium text-gray-700 text-left">Attempted</td>
-                  {roundSummary.map((r, idx) => (
-                    <td key={idx} className="py-3 px-4 text-center text-blue-700 font-bold">{r.attempted}</td>
-                  ))}
-                </tr>
-                <tr className="border-b border-gray-100">
-                  <td className="py-3 px-4 font-medium text-gray-700 text-left">Qualified</td>
-                  {roundSummary.map((r, idx) => (
-                    <td key={idx} className="py-3 px-4 text-center text-green-700 font-bold">{r.qualified}</td>
-                  ))}
-                </tr>
-                <tr>
-                  <td className="py-3 px-4 font-medium text-gray-700 text-left">Date</td>
-                  {roundSummary.map((r, idx) => (
-                    <td key={idx} className="py-3 px-4 text-center text-gray-600">{r.date}</td>
-                  ))}
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        {/* Redesigned Challenge Rounds Section (as per sketch) */}
+        {/* Rounds Section */}
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
-          {/* Rounds Tabs */}
-          <div className="flex flex-wrap gap-2 mb-4">
-            {['Round 1', 'Round 2', 'Finale'].map((round, idx) => (
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">Challenge Rounds</h2>
+          
+          {/* Round Navigation */}
+          <div className="flex flex-wrap gap-2 mb-8">
+            {challengeDetails.rounds.map((round, index) => (
               <button
-                key={round}
-                onClick={() => setActiveRound(idx)}
-                className={`px-5 py-2 rounded-lg font-bold transition-colors border-2 ${
-                  activeRound === idx
-                    ? 'bg-blue-600 text-white border-blue-600 shadow-sm'
-                    : 'bg-gray-50 text-gray-700 border-gray-200 hover:bg-blue-50'
+                key={index}
+                onClick={() => setActiveRound(index)}
+                className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                  activeRound === index
+                    ? 'bg-blue-600 text-white shadow-sm'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >
                 {round}
@@ -299,86 +230,47 @@ const ChallengeDetails: React.FC = () => {
             ))}
           </div>
 
-          {/* Grade Selector */}
-          {/* Grade Selector */}
-          <div className="flex flex-wrap gap-2 mb-6 items-center">
-            {grades.map((grade) => (
-              <button
-                key={grade}
-                onClick={() => setSelectedGrade(grade)}
-                className={`px-3 py-1 rounded-full font-medium border-2 text-sm transition-colors ${
-                  selectedGrade === grade
-                    ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white border-blue-500'
-                    : 'bg-white text-gray-700 border-gray-200 hover:bg-blue-50'
-                }`}
-              >
-                {grade}
-              </button>
-            ))}
-          </div>
-
-          {/* Stats and Actions - Improved UI, now dynamic */}
-          <div className="flex flex-col md:flex-row md:items-center md:gap-8 gap-4 mb-6">
-            <div className="flex flex-row gap-8 bg-gray-50 rounded-xl px-6 py-4 shadow-sm border border-gray-100 w-fit">
-              <div className="flex flex-col items-center ml-12">
-                <span className="text-sm text-gray-500 font-medium mb-1">Registered</span>
-                <span className="text-2xl font-black text-blue-700">{currentStat.registered}</span>
-              </div>
-              <div className="flex flex-col items-center ml-12">
-                <span className="text-sm text-gray-500 font-medium mb-1">Appeared</span>
-                <span className="text-2xl font-black text-purple-700">{currentStat.appeared}</span>
-              </div>
-              <div className="flex flex-col items-center ml-12">
-                <span className="text-sm text-gray-500 font-medium mb-1">Qualified</span>
-                <span className="text-2xl font-black text-green-700">{currentStat.qualified}</span>
-              </div>
-            </div>
-            <div className="flex flex-col gap-2 md:ml-auto">
-              <button className="px-4 py-2 bg-gradient-to-r from-green-500 to-blue-500 text-white rounded-lg font-bold flex items-center gap-2 shadow hover:from-green-600 hover:to-blue-600">
-                Grade {currentStat.grade} Report
-                <span className="ml-1">▼</span>
-              </button>
-              <button className="px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg font-bold flex items-center gap-2 shadow hover:from-purple-600 hover:to-pink-600">
-                Sample Questions
-                <span className="ml-1">↗</span>
-              </button>
-            </div>
-          </div>
-        
-            {/* Table Controls - Improved */}
-            <div className="flex flex-col md:flex-row md:items-center md:gap-6 gap-3 mb-4">
-              <input type="text" placeholder="Search students..." className="px-5 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-400 w-full md:w-96 " />
-              <button className="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-bold flex items-center gap-2 shadow hover:from-blue-700 hover:to-purple-700 ml-[auto]">
-                Download CSV
-              </button>
-            </div>
-
-          {/* Data Table - Improved, scrollable, mail contact, single status, dynamic */}
-          <div className="overflow-x-auto max-h-80 rounded-lg border border-gray-100 bg-white shadow-inner">
-            <table className="min-w-full border-collapse">
-              <thead className="sticky top-0 bg-white z-10">
-                <tr className="border-b-2 border-gray-200">
-                  <th className="py-3 px-4 text-left font-bold text-gray-900">Name</th>
-                  <th className="py-3 px-4 text-left font-bold text-gray-900">Grade</th>
-                  <th className="py-3 px-4 text-left font-bold text-gray-900">Contact</th>
-                  <th className="py-3 px-4 text-left font-bold text-gray-900">Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredStudents.map((student, idx) => (
-                  <tr key={idx} className="border-b border-gray-100 hover:bg-gray-50">
-                    <td className="py-3 px-4">{student.name}</td>
-                    <td className="py-3 px-4">{student.grade}</td>
-                    <td className="py-3 px-4">
-                      <a href={`mailto:${student.email}`} className="text-blue-600 underline">{student.email}</a>
-                    </td>
-                    <td className="py-3 px-4">
-                      <span className="inline-block px-3 py-1 rounded-full bg-green-100 text-green-700 font-bold">{student.status}</span>
-                    </td>
+          {/* Round Data Table */}
+          <div>
+            <h3 className="text-xl font-semibold text-gray-900 mb-4">
+              {challengeDetails.rounds[activeRound]} Statistics
+            </h3>
+            <div className="overflow-x-auto">
+              <table className="w-full border-collapse">
+                <thead>
+                  <tr className="border-b-2 border-gray-200">
+                    <th className="text-left py-3 px-4 font-semibold text-gray-900">Grade Level</th>
+                    <th className="text-left py-3 px-4 font-semibold text-gray-900">Students Registered</th>
+                    <th className="text-left py-3 px-4 font-semibold text-gray-900">Students Attempted</th>
+                    <th className="text-left py-3 px-4 font-semibold text-gray-900">Students Qualified</th>
+                    <th className="text-left py-3 px-4 font-semibold text-gray-900">Success Rate</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {roundData.map((row, idx) => (
+                    <tr key={idx} className="border-b border-gray-100 hover:bg-gray-50">
+                      <td className="py-3 px-4 font-medium text-gray-900">{row.grade}</td>
+                      <td className="py-3 px-4 text-gray-700">{row.registered}</td>
+                      <td className="py-3 px-4 text-gray-700">{row.attempted}</td>
+                      <td className="py-3 px-4 text-gray-700">{row.qualified}</td>
+                      <td className="py-3 px-4">
+                        <div className="flex items-center gap-3">
+                          <span className="text-sm font-medium text-gray-900">
+                            {Math.round((row.qualified / row.attempted) * 100)}%
+                          </span>
+                          <div className="flex-1 max-w-24 bg-gray-200 rounded-full h-2">
+                            <div 
+                              className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+                              style={{ width: `${(row.qualified / row.attempted) * 100}%` }}
+                            ></div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
 
@@ -405,25 +297,16 @@ const ChallengeDetails: React.FC = () => {
           </div>
         </div>
         
-
-          </div>
-          {/* Sidebar */}
-          <div className="space-y-6">
-            {/* Partners Section */}
-            <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200">
-              <h3 className="text-xl font-black bg-gradient-to-r from-indigo-600 to-cyan-600 bg-clip-text text-transparent mb-2">🤝 Our Partners</h3>
-              <p className="text-gray-600 text-sm font-medium mb-4">Trusted by leading institutions</p>
-              <div className="space-y-4">
-                {partners.map((partner) => (
-                  <div key={partner.name} className="border p-3 rounded-lg flex flex-col items-center text-center bg-gray-50 hover:bg-gray-100 transition-colors">
-                    <div className="w-full aspect-video bg-gray-200 rounded-lg overflow-hidden mb-2">
-                      <img src={partner.logoUrl} alt={partner.name} className="w-full h-full object-contain" />
-                    </div>
-                    <p className="font-bold text-gray-700">{partner.name}</p>
-                  </div>
-                ))}
+        {/* Partners Section */}
+        <div className="bg-white p-6 rounded-lg shadow-md">
+          <h3 className="text-xl font-semibold text-gray-800 mb-4">Partners</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            {partners.map((partner) => (
+              <div key={partner.name} className=" border p-4 rounded-md flex flex-col items-center text-center">
+                <img src={partner.logoUrl} alt={partner.name} className="bg-gray-300 aspect-[16/9] object-contain mb-3" />
+                <p className="font-bold text-gray-700">{partner.name}</p>
               </div>
-            </div>
+            ))}
           </div>
         </div>
 

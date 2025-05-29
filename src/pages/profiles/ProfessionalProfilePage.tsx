@@ -170,16 +170,16 @@ const ProfessionalProfilePage: React.FC = () => {
       <div className="container mx-auto px-4 py-6 max-w-7xl">
         {/* Header */}
         <div className="mb-6 text-center lg:text-left">
-          <div className="inline-flex items-center gap-3 mb-4">
-            <div className="w-2.5 h-2.5 bg-indigo-500 rounded-full animate-pulse"></div>
-            <span className="text-xs font-semibold text-indigo-600 uppercase tracking-wider">Professional Portal</span>
-          </div>
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-indigo-900 via-purple-800 to-pink-800 bg-clip-text text-transparent mb-3 tracking-tight">
-            My Professional Profile
+          
+          <div className="mb-6">
+          <h1 className="text-4xl font-black bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent mb-2 tracking-tight antialiased leading-normal">
+            Professional Profile
           </h1>
-          <p className="text-base md:text-lg text-slate-600 max-w-2xl">
-            Manage your professional information and career details
+
+          <p className="text-lg font-medium text-slate-600">
+            Manage your professional information, skills, and experience to enhance your career opportunities.
           </p>
+        </div> 
         </div>
 
         <div className="grid grid-cols-1 xl:grid-cols-12 gap-6">
@@ -188,14 +188,7 @@ const ProfessionalProfilePage: React.FC = () => {
             <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-6 md:p-8 shadow-xl border border-white/30">
               {/* Profile Picture and Name Section */}
               <div className="flex flex-col sm:flex-row sm:items-center gap-6 mb-8 pb-6 border-b border-gray-200">
-                <div className="relative flex-shrink-0">
-                  <div className="w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-600 rounded-full flex items-center justify-center text-white text-2xl sm:text-4xl font-bold shadow-2xl">
-                    {initials}
-                  </div>
-                  <div className="absolute -bottom-2 -right-2 w-8 h-8 sm:w-10 sm:h-10 bg-green-500 rounded-full border-4 border-white flex items-center justify-center shadow-lg">
-                    <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-                  </div>
-                </div>
+                
                 <div className="flex-1 text-center sm:text-left">
                   <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">
                     {profileData.firstName} {profileData.lastName}

@@ -107,14 +107,23 @@ const SchoolProfilePage: React.FC = () => {
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-8xl mx-auto p-6">
         {/* Header */}
-        <div className="mb-8">
+        <div className="mb-6">
+          <h1 className="text-4xl font-black bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent mb-2 tracking-tight antialiased leading-normal">
+            School Profile
+          </h1>
+
+          <p className="text-lg font-medium text-slate-600">
+            Discover and enroll in comprehensive courses to enhance your skills
+          </p>
+        </div> 
+        {/* <div className="mb-8">
           <h1 className="text-4xl font-black bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent mb-2 tracking-tight">
             School Profile
           </h1>
           <p className="text-lg font-medium text-slate-600">
             Manage your school information and institutional settings
           </p>
-        </div>
+        </div> */}
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Profile Card */}
@@ -122,9 +131,9 @@ const SchoolProfilePage: React.FC = () => {
             <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 sticky top-6">
               {/* School Logo */}
               <div className="text-center mb-6">
-                <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4">
+                {/* <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4">
                   {schoolInitials}
-                </div>
+                </div> */}
                 <h2 className="text-xl font-bold text-gray-800 mb-1">
                   {profileData.schoolName}
                 </h2>

@@ -1,5 +1,6 @@
 import React from 'react';
-import SchoolDashboardCourseCard from '../components/SchoolDashboardCourseCard';
+import SchoolChallengeDashboardCard from '../../components/school/SchoolChallengeDashboardCard';
+import SchoolCourseDashboardCard from '../../components/school/SchoolCourseDashboardCard';
 import { BookOpen, Trophy } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -15,7 +16,7 @@ const SchoolDashboard: React.FC = () => {
   const courses = [
     {
       id: 'course-1',
-      title: 'Innovation Course',
+      title: 'Innovation Course For Beginners',
       host: 'Sarah Joe',
       studentsEnrolled: 50,
       studentsCompleted: 50,
@@ -23,7 +24,7 @@ const SchoolDashboard: React.FC = () => {
     },
     {
       id: 'course-2',
-      title: 'Mathematics Basics',
+      title: 'Mathematics Basics for Kids',
       host: 'John Doe',
       studentsEnrolled: 40,
       studentsCompleted: 30,
@@ -31,7 +32,7 @@ const SchoolDashboard: React.FC = () => {
     },
     {
       id: 'course-3',
-      title: 'Science Explorers',
+      title: 'Science Explorers for Kids',
       host: 'Jane Smith',
       studentsEnrolled: 35,
       studentsCompleted: 20,
@@ -40,12 +41,28 @@ const SchoolDashboard: React.FC = () => {
   ];
 
   // Mock challenges
+
+  // Mock challenges
   const challenges = [
     {
       id: 'challenge-1',
       title: 'Innoventure Challenge',
       host: 'Dr. Ken',
-      deadline: '15th March 2025',
+      deadline: '15th May 2025',
+      image: '/images/challenges/innoventure_challenge.png',
+    },
+    {
+      id: 'challenge-2',
+      title: 'Math Olympiad',
+      host: 'Prof. Alan',
+      deadline: '1st June 2025',
+      image: '/images/challenges/innoventure_challenge.png',
+    },
+    {
+      id: 'challenge-3',
+      title: 'Science Fair',
+      host: 'Dr. Marie',
+      deadline: '10th June 2025',
       image: '/images/challenges/innoventure_challenge.png',
     },
   ];
@@ -142,47 +159,22 @@ const SchoolDashboard: React.FC = () => {
             </h2>
             <div className="flex flex-col gap-6 flex-1">
               {courses.map((course) => (
-              <div key={course.id} className="flex gap-6 items-center bg-gradient-to-r from-gray-50 to-blue-50 rounded-xl p-5 border border-gray-100 hover:shadow-md transition-shadow duration-200">
-              <div className="w-32 h-24 rounded-xl overflow-hidden bg-gradient-to-br from-purple-200 via-blue-200 to-indigo-200 flex items-center justify-center shadow-sm">
-                <BookOpen size={32} className="text-purple-600" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <h3 className="text-lg font-black text-gray-800 leading-6 tracking-tight">{course.title}</h3>
-                <div className="text-sm text-violet-600 font-semibold mb-2">by {course.host}</div>
-                <div className="flex gap-2 items-center">
-                <div className="text-xs text-green-600 font-semibold">Enrolled: {course.studentsEnrolled}</div>
-                <div className="text-xs text-blue-600 font-semibold">Completed: {course.studentsCompleted}</div>
-                </div>
-                
-              </div>
-              </div>
+                <SchoolCourseDashboardCard key={course.id} course={course} />
               ))}
             </div>
             <div className="mt-4 flex justify-center">
               <Link to="/school/courses" className="text-blue-600 font-semibold hover:underline">View More</Link>
             </div>
             </div>
-            {/* Available Challenges */}
-            <div className="bg-white rounded-2xl p-6 shadow-sm flex flex-col">
+             {/* Available Challenges */}
+          <div className="bg-white rounded-2xl p-6 shadow-sm flex flex-col h-full min-h-[420px]">
             <h2 className="mb-3 text-2xl font-black bg-gradient-to-r from-orange-600 via-red-600 to-pink-700 bg-clip-text text-transparent flex items-center gap-3 tracking-tight">
               <Trophy size={28} className="text-orange-600" />
               Available Challenges
             </h2>
             <div className="flex flex-col gap-6 flex-1">
               {challenges.map((challenge) => (
-              <div key={challenge.id} className="flex gap-6 items-center bg-gradient-to-r from-gray-50 to-blue-50 rounded-xl p-5 border border-gray-100 hover:shadow-md transition-shadow duration-200">
-                <div className="w-32 h-24 rounded-xl overflow-hidden bg-gradient-to-br from-orange-200 via-red-200 to-pink-200 flex items-center justify-center shadow-sm">
-                <img src={challenge.image} alt={challenge.title} className="aspect-[24/9] object-cover" />
-                </div>
-                <div className="flex-1 min-w-0">
-                <h3 className="text-lg font-black text-gray-800 leading-6 tracking-tight ">{challenge.title}</h3>
-                <div className="text-sm text-violet-600 font-semibold mb-5">by {challenge.host}</div>
-                {/* <div className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-red-100 text-red-700">
-                  
-                </div> */}
-                <div className="text-xs pt-4 text-red-600 font-semibold mb-2">Deadline: {challenge.deadline}</div>
-                </div>
-              </div>
+                <SchoolChallengeDashboardCard key={challenge.id} challenge={challenge} />
               ))}
             </div>
             <div className="mt-4 flex justify-center">

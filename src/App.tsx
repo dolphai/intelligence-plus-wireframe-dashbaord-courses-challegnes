@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Menu } from 'lucide-react';
 import Sidebar from './components/Sidebar';
-import SchoolDashboard from './pages/SchoolDashboard';
+import SchoolDashboard from './pages/Dashboards/SchoolDashboard';
 // import SchoolTailwind from './pages/SchoolTailwind';
-import StudentDashboard from './pages/StudentDashboard';
-import ProfessionalDashboard from './pages/ProfessionalDashboard';
+import StudentDashboard from './pages/Dashboards/StudentDashboard';
+import ProfessionalDashboard from './pages/Dashboards/ProfessionalDashboard';
+import AdminDashboard from './pages/Dashboards/AdminDashboard';
 import Courses from './pages/Courses';
 import CourseDetail from './pages/CourseDetail';
 import CourseViewer from './pages/CourseViewer';
@@ -39,7 +40,8 @@ const App: React.FC = () => {
             <Route path="/" element={<Navigate to="/school" replace />} />
             <Route path="/school" element={<SchoolDashboard />} />
             <Route path="/student" element={<StudentDashboard />} />
-            <Route path="/professional-dashboard" element={<ProfessionalDashboard />} />
+            <Route path="/professional" element={<ProfessionalDashboard />} />
+            <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/courses" element={<Courses />} />
             <Route path="/courses/:id" element={<CourseDetail />} />
             <Route path="/course-viewer/:id" element={<CourseViewer />} />

@@ -1,11 +1,12 @@
 import React from 'react';
 import { BookOpen, Trophy } from 'lucide-react';
-import StudentDashboardCourseCard from '../components/StudentDashboardCourseCard';
+import ProfessionalDashboardCourseCard from '../../components/professional/ProfessionalCourseDashboardCard';
+import ProfessionalChallengeDashboardCard from '../../components/professional/ProfessionalChallengeDashboardCard';
 import { Link } from 'react-router-dom';
 
-const StudentDashboard: React.FC = () => {
-  // Mock data for student
-  const studentName = 'Samyak Nahar';
+const ProfessionalDashboard: React.FC = () => {
+  // Mock data for Professional
+  const ProfessionalName = 'Samyak Nahar';
   const logoUrl = '/images/partners/intelligenceplus.png';
   const stats = {
     enrolledCourses: 6,
@@ -19,7 +20,7 @@ const StudentDashboard: React.FC = () => {
       id: 'course-1',
       title: 'Innovation Course',
       host: 'Sarah Joe',
-      studentProgress: 75,
+      ProfessionalProgress: 75,
       tags: ['#Free'],
       validTill: '2025-12-31',
     },
@@ -27,7 +28,7 @@ const StudentDashboard: React.FC = () => {
       id: 'course-2',
       title: 'Mathematics Basics',
       host: 'John Doe',
-      studentProgress: 60,
+      ProfessionalProgress: 60,
       tags: ['#Math'],
       validTill: '2026-01-15',
     },
@@ -35,7 +36,7 @@ const StudentDashboard: React.FC = () => {
       id: 'course-3',
       title: 'Science Explorers',
       host: 'Jane Smith',
-      studentProgress: 80,
+      ProfessionalProgress: 80,
       tags: ['#Science'],
       validTill: '2025-11-30',
     },
@@ -73,7 +74,7 @@ const StudentDashboard: React.FC = () => {
         <div className="mb-4 flex items-center justify-between">
           <div>
         
-        <h1 className="text-2xl font-bold text-violet-800">Welcome<br />{studentName}</h1>
+        <h1 className="text-2xl font-bold text-violet-800">Welcome<br />{ProfessionalName}</h1>
           </div>
           <img src={logoUrl} alt="Intelligence Plus" className="h-10" />
         </div>
@@ -107,11 +108,11 @@ const StudentDashboard: React.FC = () => {
             </h2>
             <div className="flex flex-col gap-6 flex-1">
               {enrolledCourses.map((course) => (
-                <StudentDashboardCourseCard key={course.id} course={course} />
+                <ProfessionalDashboardCourseCard key={course.id} course={course} />
               ))}
             </div>
             <div className="mt-4 flex justify-center">
-              <Link to="/student/courses" className="text-blue-600 font-semibold hover:underline">View More</Link>
+              <Link to="/Professional/courses" className="text-blue-600 font-semibold hover:underline">View More</Link>
             </div>
           </div>
 
@@ -123,20 +124,11 @@ const StudentDashboard: React.FC = () => {
             </h2>
             <div className="flex flex-col gap-6 flex-1">
               {challenges.map((challenge) => (
-                <div key={challenge.id} className="flex gap-6 items-center bg-gradient-to-r from-gray-50 to-blue-50 rounded-xl p-5 border border-gray-100 hover:shadow-md transition-shadow duration-200">
-                  <div className="w-32 h-24 rounded-xl overflow-hidden bg-gradient-to-br from-orange-200 via-red-200 to-pink-200 flex items-center justify-center shadow-sm">
-                    <img src={challenge.image} alt={challenge.title} className="aspect-[24/9] object-cover" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="text-lg font-black text-gray-800 leading-6 tracking-tight ">{challenge.title}</h3>
-                    <div className="text-sm text-violet-600 font-semibold mb-5">by {challenge.host}</div>
-                    <div className="text-xs pt-4 text-red-600 font-semibold mb-2">Deadline: {challenge.deadline}</div>
-                  </div>
-                </div>
+                <ProfessionalChallengeDashboardCard key={challenge.id} challenge={challenge} />
               ))}
             </div>
             <div className="mt-4 flex justify-center">
-              <Link to="/student/challenges" className="text-blue-600 font-semibold hover:underline">View More</Link>
+              <Link to="/Professional/challenges" className="text-blue-600 font-semibold hover:underline">View More</Link>
             </div>
           </div>
         </div>
@@ -145,4 +137,4 @@ const StudentDashboard: React.FC = () => {
   );
 };
 
-export default StudentDashboard;
+export default ProfessionalDashboard;

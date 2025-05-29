@@ -69,6 +69,32 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen = true, setIsOpen }) => {
           <User size={20} />
           <span className="text-sm">Student Dashboard</span>
         </NavLink>
+        <NavLink
+          to="/professional"
+          className={({ isActive }) =>
+            `flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 font-medium ${
+              isActive
+                ? 'bg-white/20 text-white backdrop-blur transform translate-x-1'
+                : 'text-white/80 hover:bg-white/10 hover:text-white hover:transform hover:translate-x-1'
+            }`
+          }
+        >
+          <User size={20} />
+          <span className="text-sm">Professional Dashboard</span>
+        </NavLink>
+        <NavLink
+          to="/admin"
+          className={({ isActive }) =>
+            `flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 font-medium ${
+              isActive
+                ? 'bg-white/20 text-white backdrop-blur transform translate-x-1'
+                : 'text-white/80 hover:bg-white/10 hover:text-white hover:transform hover:translate-x-1'
+            }`
+          }
+        >
+          <User size={20} />
+          <span className="text-sm">Admin Dashboard</span>
+        </NavLink>
 
         <NavLink
           to="/courses"
