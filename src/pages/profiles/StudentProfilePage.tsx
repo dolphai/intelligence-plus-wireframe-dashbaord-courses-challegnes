@@ -24,14 +24,15 @@ interface PasswordData {
 const StudentProfilePage: React.FC = () => {
   // Predefined school options
   const schoolOptions = [
-    'St. Mary\'s International School',
-    'Greenwood High School',
-    'International Academy',
-    'Riverside Preparatory School',
-    'Westfield International School',
-    'Cambridge International School',
-    'Heritage Academy',
-    'Sunrise International School',
+    'St. Mary\'s International School, Pune',
+    'Greenwood High School, Pune',
+    'Greenwood High School, Mumbai',    
+    'International Academy, Pune',
+    'Riverside Preparatory School, Pune',
+    'Westfield International School, Pune',
+    'Cambridge International School, Pune',
+    'Heritage Academy, Pune',
+    'Sunrise International School, Pune',
     'Others'
   ];
 
@@ -51,7 +52,7 @@ const StudentProfilePage: React.FC = () => {
     lastName: 'Nelson',
     dob: '2008-03-15',
     alternate_email: 'sarah.personal@gmail.com',
-    alternate_contact: '+1234567890',
+    alternate_contact: '+91 7985434378',
     schoolName: 'St. Mary\'s International School',
     grade: '10th Grade',
     mainEmail: 'sarah.nelson@stmarys.edu',

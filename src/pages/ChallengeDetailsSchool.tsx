@@ -22,10 +22,10 @@ const ChallengeDetails: React.FC = () => {
   const filteredStats = statData.filter(s => (selectedGrade === 'All Grades' || s.grade === selectedGrade) && s.round === rounds[activeRound]);
   const currentStat = filteredStats[0] || { registered: 0, appeared: 0, qualified: 0, grade: selectedGrade };
   const studentsData = [
-    { name: 'Aarav Sharma', grade: '5', email: 'aarav.sharma@email.com', status: 'R2 Qualified' },
-    { name: 'Priya Verma', grade: '5', email: 'priya.verma@email.com', status: 'R1 Qualified' },
-    { name: 'Rahul Singh', grade: '5', email: 'rahul.singh@email.com', status: 'R1 Attempted' },
-    { name: 'Simran Kaur', grade: '6', email: 'simran.kaur@email.com', status: 'R2 Qualified' },
+    { name: 'Aarav Sharma', grade: '5', email: 'aarav.sharma@email.com', status: 'R1 Attempted' },
+    { name: 'Priya Verma', grade: '5', email: 'priya.verma@email.com', status: 'Absent' },
+    { name: 'Rahul Singh', grade: '5', email: 'rahul.singh@email.com', status: 'Absent' },
+    { name: 'Simran Kaur', grade: '6', email: 'simran.kaur@email.com', status: 'R1 Qualified' },
     { name: 'Vikram Patel', grade: '6', email: 'vikram.patel@email.com', status: 'R1 Attempted' },
     // Add more students as needed
   ];
@@ -43,7 +43,7 @@ const ChallengeDetails: React.FC = () => {
     status: 'active',
     difficulty: 'Advanced',
     category: 'Innovation',
-    rounds: ['Round 1', 'Round 2', 'Round 3', 'Round 4'],
+    rounds: ['Round 1', 'Round 2', 'Round 3'],
     createdAt: '2025-01-15T00:00:00Z',
     image: '/images/challenges/innoventure_challenge.png',
     organizer: 'Innovation Hub',
@@ -57,18 +57,24 @@ const ChallengeDetails: React.FC = () => {
     { grade: "Grade 5", registered: 100, attempted: 90, qualified: 15 },
     { grade: "Grade 6", registered: 85, attempted: 85, qualified: 12 },
     { grade: "Grade 7", registered: 78, attempted: 78, qualified: 10 },
-    { grade: "Grade 8", registered: 88, attempted: 88, qualified: 8 },
+    // { grade: "Grade 8", registered: 88, attempted: 88, qualified: 8 },
   ];
 
   // Mocked per-round summary data for the new table
   const roundSummary = [
-    { attempted: 341, qualified: 45, date: '2025-03-01' },
-    { attempted: 320, qualified: 32, date: '2025-04-01' },
-    { attempted: 290, qualified: 20, date: '2025-05-01' },
-    { attempted: 180, qualified: 10, date: '2025-06-01' },
+    { attempted: 341, qualified: 45,absent: 20},
+    { attempted: 320, qualified: 32, absent:23},
+    { attempted: 290, qualified: 20,absent:2 },
+    // { attempted: 180, qualified: 10, date: '2025-06-01' },
   ];
 
   const resources = [
+    { name: "Challenge Guidelines", url: "/files/challenge-guidelines.pdf", size: "2.5 MB" },
+    { name: "Sample Problems", url: "/files/sample-problems.pdf", size: "1.8 MB" },
+    { name: "Submission Template", url: "/files/submission-template.docx", size: "0.5 MB" },
+    { name: "Evaluation Criteria", url: "/files/evaluation-criteria.pdf", size: "1.2 MB" },
+    { name: "Submission Template", url: "/files/submission-template.docx", size: "0.5 MB" },
+    { name: "Evaluation Criteria", url: "/files/evaluation-criteria.pdf", size: "1.2 MB" },
     { name: "Challenge Guidelines", url: "/files/challenge-guidelines.pdf", size: "2.5 MB" },
     { name: "Sample Problems", url: "/files/sample-problems.pdf", size: "1.8 MB" },
     { name: "Submission Template", url: "/files/submission-template.docx", size: "0.5 MB" },
@@ -273,12 +279,18 @@ const ChallengeDetails: React.FC = () => {
                     <td key={idx} className="py-3 px-4 text-center text-green-700 font-bold">{r.qualified}</td>
                   ))}
                 </tr>
-                <tr>
+                <tr className="border-b border-gray-100">
+                  <td className="py-3 px-4 font-medium text-gray-700 text-left">Absent</td>
+                  {roundSummary.map((r, idx) => (
+                    <td key={idx} className="py-3 px-4 text-center text-green-700 font-bold">{r.absent}</td>
+                  ))}
+                </tr>
+                {/* <tr>
                   <td className="py-3 px-4 font-medium text-gray-700 text-left">Date</td>
                   {roundSummary.map((r, idx) => (
                     <td key={idx} className="py-3 px-4 text-center text-gray-600">{r.date}</td>
                   ))}
-                </tr>
+                </tr> */}
               </tbody>
             </table>
           </div>
@@ -287,7 +299,7 @@ const ChallengeDetails: React.FC = () => {
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-6">Challenge Resources</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            {(showAllResources ? resources : resources.slice(0, 4)).map((resource, idx) => (
+            {(showAllResources ? resources : resources.slice(0, 8)).map((resource, idx) => (
               <div
           key={idx}
           className="flex items-center justify-between p-3 bg-gray-50 rounded-lg border border-gray-200 hover:bg-gray-100 transition-colors"
@@ -306,7 +318,7 @@ const ChallengeDetails: React.FC = () => {
               </div>
             ))}
           </div>
-          {resources.length > 4 && (
+          {resources.length > 8 && (
             <div className="flex justify-center mt-2">
               <button
           className="text-blue-600 hover:underline text-sm font-semibold bg-transparent px-2 py-1 rounded"
@@ -328,7 +340,7 @@ const ChallengeDetails: React.FC = () => {
           <div className="space-y-6">
             {/* Partners Section */}
             <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200">
-              <h3 className="text-xl font-black bg-gradient-to-r from-indigo-600 to-cyan-600 bg-clip-text text-transparent mb-2">🤝 Our Partners</h3>
+              <h3 className="text-xl font-black bg-gradient-to-r from-indigo-600 to-cyan-600 bg-clip-text text-transparent mb-2"> Our Partners</h3>
               <p className="text-gray-600 text-sm font-medium mb-4">Trusted by leading institutions</p>
               <div className="space-y-4">
                 {partners.map((partner) => (
@@ -344,10 +356,10 @@ const ChallengeDetails: React.FC = () => {
           </div>
         </div>
         {/* Redesigned Challenge Rounds Section (as per sketch) */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8 mt-6">
           {/* Rounds Tabs */}
           <div className="flex flex-wrap gap-2 mb-4">
-            {['Round 1', 'Round 2', 'Finale'].map((round, idx) => (
+            {['Round 1', 'Round 2', 'Round 3'].map((round, idx) => (
               <button
                 key={round}
                 onClick={() => setActiveRound(idx)}

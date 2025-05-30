@@ -29,7 +29,7 @@ const StudentProfilePage: React.FC = () => {
     grade: '10th Grade',
     schoolEmail: 'sarah.nelson@stmarys.edu',
     alternate_email: 'sarah.personal@gmail.com',
-    alternate_contact: '+1234567890',
+    alternate_contact: '+91 7985434378',
     updatedAt: '2025-05-20'
   });
 

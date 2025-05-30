@@ -757,29 +757,35 @@ The key outcome of this challenge is to prepare students for solving real-life c
                   </>
                 )}
               </CardContent>
-            </Card>            {/* Partners Section */}
-            <Card className="shadow-lg">
-              <CardContent className="p-6">
-                <h3 className="text-lg font-bold mb-4">Our Partners</h3>
-                <div className="space-y-6">
-                  {partners.map((partner, index) => (
-                    <div key={index} className="space-y-3">
-                      {/* Partner Name */}
-                      <h4 className="font-bold text-gray-900 text-lg">{partner.name}</h4>
-                      
-                      {/* Partner Logo - 16:9 aspect ratio */}
-                      <div className="w-full aspect-video bg-gray-50 rounded-lg overflow-hidden hover:bg-gray-100 transition-colors">
-                        <img
-                          src={partner.logo || "/placeholder.svg"}
-                          alt={partner.name}
-                          className="w-full h-full object-contain p-4"
-                        />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+            </Card> 
+                      {/* Partners */}
+                      <Card className="bg-white shadow-lg border-2">
+                        <CardHeader className="pb-4 text-center">
+                          <CardTitle className="text-xl font-black bg-gradient-to-r from-indigo-600 to-cyan-600 bg-clip-text text-transparent">
+                            🤝 Our Partners
+                          </CardTitle>
+                          <p className="text-gray-600 text-sm font-medium">Trusted by leading institutions</p>
+                        </CardHeader>
+                        <CardContent>
+                          <div className="space-y-2">
+                            {partners.map((partner, index) => (
+                              <div
+                                key={index}
+                                className="bg-gray-30 rounded-lg hover:bg-gray-100 transition-colors p-2"
+                              >
+                                <h4 className="font-bold text-gray-900 mb-2 text-center">{partner.name}</h4>
+                                <div className="w-full aspect-video bg-gray-200 rounded-lg overflow-hidden">
+                                  <img
+                                    src={partner.logo || "/placeholder.svg"}
+                                    alt={partner.name}
+                                    className="w-full h-full object-contain"
+                                  />
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </CardContent>
+                      </Card>
           </div>
         </div>
 

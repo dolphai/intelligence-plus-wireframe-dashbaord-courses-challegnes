@@ -89,7 +89,7 @@ const ProfessionalProfilePage: React.FC = () => {
     lastName: 'Johnson',
     dob: '1990-07-15',
     personalEmail: 'sarah.johnson@gmail.com',
-    personalContact: '+1234567890',
+    personalContact: '+91 7985434378',
     workEmail: 'sarah.johnson@microsoft.com',
     companyName: 'Microsoft Corporation',
     designation: 'Senior Software Engineer',

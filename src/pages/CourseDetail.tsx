@@ -867,7 +867,7 @@ const CourseDetail: React.FC = () => {
             <Card className="bg-white shadow-lg border-2">
                 <CardHeader className="pb-4 text-center">
                 <CardTitle className="text-xl font-black bg-gradient-to-r from-indigo-600 to-cyan-600 bg-clip-text text-transparent">
-                  🤝 Our Partners
+                   Our Partners
                 </CardTitle>
                 <p className="text-gray-600 text-sm font-medium">Trusted by leading institutions</p>
                 </CardHeader>

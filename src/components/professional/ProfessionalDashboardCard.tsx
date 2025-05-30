@@ -1,14 +1,14 @@
 import React from 'react';
 
-interface StudentDashboardCardProps {
+interface ProfessionalDashboardCardProps {
   children: React.ReactNode;
   className?: string;
 }
 
-const StudentDashboardCard: React.FC<StudentDashboardCardProps> = ({ children, className = '' }) => (
+const ProfessionalDashboardCard: React.FC<ProfessionalDashboardCardProps> = ({ children, className = '' }) => (
   <div className={`bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex flex-col h-full ${className}`}>
     {children}
   </div>
 );
 
-export default StudentDashboardCard;
+export default ProfessionalDashboardCard;

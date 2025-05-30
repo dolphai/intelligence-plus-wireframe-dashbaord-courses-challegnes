@@ -3,7 +3,7 @@ import { Edit3, Save, X, Lock, Calendar, School, Mail, Phone, User, MapPin, User
 
 interface SchoolProfileData {
   schoolName: string;
-  establishedYear: string;
+  branch: string;
   schoolType: string;
   address: string;
   city: string;
@@ -35,7 +35,7 @@ const SchoolProfilePage: React.FC = () => {
   // Mock static data - replace with actual API data
   const [profileData, setProfileData] = useState<SchoolProfileData>({
     schoolName: 'St. Mary\'s International School',
-    establishedYear: '1985',
+    branch: 'Pune Branch',
     schoolType: 'SSC',
     address: '123 Education Avenue',
     city: 'Springfield',
@@ -43,15 +43,15 @@ const SchoolProfilePage: React.FC = () => {
     zipCode: '62701',
     website: 'www.stmarys-intl.edu',
     schoolEmail: 'admin@stmarys-intl.edu',
-    schoolPhone: '+1 (555) 123-4567',
+    schoolPhone: '+91 8045434378',
     totalStudents: '1,250',
     totalTeachers: '85',
     principalName: 'Dr. Margaret Williams',
     principalEmail: 'principal@stmarys-intl.edu',
-    principalPhone: '+1 (555) 123-4568',
+    principalPhone: '+91 9045434378',
     coordinatorName: 'Sarah Johnson',
     coordinatorEmail: 'coordinator@stmarys-intl.edu',
-    coordinatorPhone: '+1 (555) 123-4569',
+    coordinatorPhone: '+91 9985434378',
     coordinatorDepartment: 'Academic Affairs',
     schoolDescription: 'A leading international school committed to providing excellent education and fostering global citizenship among our students.',
     updatedAt: '2025-05-20'
@@ -227,7 +227,23 @@ const SchoolProfilePage: React.FC = () => {
                     <p className="p-3 bg-gray-50 rounded-lg text-gray-800">{profileData.schoolName}</p>
                   )}
                 </div>
-
+                {/* Branch */}
+                {/* <div>
+                  <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">
+                    <School size={16} />
+                    Branch
+                  </label>
+                  {isEditing ? (
+                    <input
+                      type="text"
+                      value={editedData.branch}
+                      onChange={(e) => setEditedData(prev => ({ ...prev, branch: e.target.value }))}
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    />
+                  ) : (
+                    <p className="p-3 bg-gray-50 rounded-lg text-gray-800">{profileData.branch}</p>
+                  )}
+                </div> */}
                 {/* School Type */}
                 <div>
                   <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">
@@ -252,7 +268,7 @@ const SchoolProfilePage: React.FC = () => {
                 </div>
 
                 {/* Established Year */}
-                <div>
+                {/* <div>
                   <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">
                     <Calendar size={16} />
                     Established Year
@@ -267,7 +283,7 @@ const SchoolProfilePage: React.FC = () => {
                   ) : (
                     <p className="p-3 bg-gray-50 rounded-lg text-gray-800">{profileData.establishedYear}</p>
                   )}
-                </div>
+                </div> */}
 
                 {/* Website */}
                 <div>

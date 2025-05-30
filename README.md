@@ -152,7 +152,7 @@ The build artifacts will be stored in the `dist/` directory.
 
 ## 📄 License
 
-This project is part of the Intelligent Plus dashboard system.
+This project is part of the Intelligence Plus dashboard system.
 
 ---
 
